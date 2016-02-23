@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  SurfApocalypse
+
+  Created by Eric Mead on 2/22/16.
+  Copyright © 2016 Eric Mead. All rights reserved.
+*/
+
+"Language" = "English";
+"Surf Apocalypse" = "Surf Apocalypse";
+
+"Enter" = "Enter";
+"Exit" = "Exit";
