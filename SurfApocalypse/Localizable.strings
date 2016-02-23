@@ -9,5 +9,20 @@
 "Language" = "English";
 "Surf Apocalypse" = "Surf Apocalypse";
 
+//Main Menu
+
 "Enter" = "Enter";
 "Exit" = "Exit";
+
+//Build Mode
+
+"Move" = "Move";
+"Add" = "Add";
+"Remove" = "Remove";
+"Zoom Out" = "Zoom Out";
+"Zoom In" = "Zoom In";
+"Print" = "Print";
+
+//Play Mode
+
+"II" = "II";

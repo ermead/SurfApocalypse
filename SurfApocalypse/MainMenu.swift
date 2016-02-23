@@ -103,18 +103,18 @@ class MainMenu: SGScene {
             
             self.runAction(sndButtonClick)
             
-//            let nextScene = CharSelect(size: self.scene!.size)
-//            nextScene.scaleMode = self.scaleMode
-//            self.view?.presentScene(nextScene)
+            let nextScene = GamePlayMode(size: self.scene!.size)
+            nextScene.scaleMode = self.scaleMode
+            self.view?.presentScene(nextScene, transition: SKTransition.fadeWithDuration(0.5))
             
         }
         if event == "buttonB" {
             
             self.runAction(sndButtonClick)
             
-//            let nextScene = GameBuildMode(size: self.scene!.size)
-//            nextScene.scaleMode = self.scaleMode
-//            self.view?.presentScene(nextScene)
+            let nextScene = GameBuildMode(size: self.scene!.size)
+            nextScene.scaleMode = self.scaleMode
+            self.view?.presentScene(nextScene)
             
         }
         
