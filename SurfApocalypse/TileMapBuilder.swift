@@ -37,6 +37,18 @@ enum tileType: Int {
     case tileGem                 = 23
     case tileStartLevel          = 24
     case tileEndLevel            = 25
+    case tileTree1               = 26
+    case tileTree2               = 27
+    case tileTree3               = 28
+    case tileCastle              = 29
+    case tileDiamond             = 30
+    case tileRock1               = 31
+    case tileRock2               = 32
+    case tileGumdrop             = 33
+    case tileGrass               = 34
+    case tileGinger              = 35
+    case tileBush                = 36
+    case tileBushes              = 37
 }
 
 protocol tileMapDelegate {

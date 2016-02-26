@@ -10,7 +10,7 @@
 import SpriteKit
 import GameplayKit
 
-let randomSceneryArt = ["B1","B2","B3","B4","Mushroom_1","Mushroom_2","Stone","Tree_1","Tree_2","Tree_3"]
+let randomSceneryArt = ["gumdrop","Mushroom_1","Mushroom_2","Stone","diamond"]
 
 class TileLayer: SKNode, tileMapDelegate {
     
@@ -250,6 +250,8 @@ class TileLayer: SKNode, tileMapDelegate {
             node.zPosition = GameSettings.GameParams.zValues.zWorld
             addChild(node)
             break
+        
+            
         case .tileSignPost:
             let node = SKSpriteNode(texture: atlasTiles.textureNamed("Sign_1"))
             node.size = CGSize(width: 32, height: 32)
@@ -295,6 +297,130 @@ class TileLayer: SKNode, tileMapDelegate {
             node.name = "placeholder_FinishPoint"
             addChild(node)
             break
+            
+        case .tileTree1:
+            let node = SKSpriteNode(texture: atlasTiles.textureNamed("Tree_1"))
+            node.xScale = 0.5
+            node.yScale = 0.5
+            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            node.position = CGPoint(x: location.x, y: location.y - 16)
+            node.zPosition = GameSettings.GameParams.zValues.zWorld
+            addChild(node)
+            break
+            
+        case .tileTree2:
+            let node = SKSpriteNode(texture: atlasTiles.textureNamed("Tree_2"))
+            node.xScale = 0.5
+            node.yScale = 0.5
+            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            node.position = CGPoint(x: location.x, y: location.y - 16)
+            node.zPosition = GameSettings.GameParams.zValues.zWorld
+            addChild(node)
+            break
+            
+        case .tileTree3:
+            let node = SKSpriteNode(texture: atlasTiles.textureNamed("Tree_3"))
+            node.xScale = 0.5
+            node.yScale = 0.5
+            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            node.position = CGPoint(x: location.x, y: location.y - 16)
+            node.zPosition = GameSettings.GameParams.zValues.zWorld
+            addChild(node)
+            break
+            
+        case .tileCastle:
+            let node = SKSpriteNode(texture: atlasTiles.textureNamed("castle"))
+            node.xScale = 0.5
+            node.yScale = 0.5
+            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            node.position = CGPoint(x: location.x, y: location.y - 16)
+            node.zPosition = GameSettings.GameParams.zValues.zWorld
+            addChild(node)
+            break
+            
+        case .tileGumdrop:
+            let node = SKSpriteNode(texture: atlasTiles.textureNamed("gumdrop"))
+            node.xScale = 0.5
+            node.yScale = 0.5
+            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            node.position = CGPoint(x: location.x, y: location.y - 16)
+            node.zPosition = GameSettings.GameParams.zValues.zWorld
+            addChild(node)
+            break
+            
+        case .tileDiamond:
+            let node = SKSpriteNode(texture: atlasTiles.textureNamed("diamond"))
+            node.xScale = 0.5
+            node.yScale = 0.5
+            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            node.position = CGPoint(x: location.x, y: location.y - 16)
+            node.zPosition = GameSettings.GameParams.zValues.zWorld
+            addChild(node)
+            break
+            
+        case .tileRock1:
+            let node = SKSpriteNode(texture: atlasTiles.textureNamed("rock1"))
+            node.xScale = 0.5
+            node.yScale = 0.5
+            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            node.position = CGPoint(x: location.x, y: location.y - 16)
+            node.zPosition = GameSettings.GameParams.zValues.zWorld
+            addChild(node)
+            break
+            
+        case .tileRock2:
+            let node = SKSpriteNode(texture: atlasTiles.textureNamed("rock2"))
+            node.xScale = 0.5
+            node.yScale = 0.5
+            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            node.position = CGPoint(x: location.x, y: location.y - 16)
+            node.zPosition = GameSettings.GameParams.zValues.zWorld
+            addChild(node)
+            break
+            
+        case .tileGinger:
+            let node = SKSpriteNode(texture: atlasTiles.textureNamed("ginger"))
+            node.xScale = 0.5
+            node.yScale = 0.5
+            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            node.position = CGPoint(x: location.x, y: location.y - 16)
+            node.zPosition = GameSettings.GameParams.zValues.zWorld
+            addChild(node)
+            break
+            
+        case .tileBush:
+            let node = SKSpriteNode(texture: atlasTiles.textureNamed("bush"))
+            node.xScale = 0.5
+            node.yScale = 0.5
+            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            node.position = CGPoint(x: location.x, y: location.y - 16)
+            node.zPosition = GameSettings.GameParams.zValues.zWorld
+            addChild(node)
+            break
+            
+        case .tileBushes:
+            let node = SKSpriteNode(texture: atlasTiles.textureNamed("bushes"))
+            node.xScale = 0.5
+            node.yScale = 0.5
+            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            node.position = CGPoint(x: location.x, y: location.y - 16)
+            node.zPosition = GameSettings.GameParams.zValues.zWorld
+            addChild(node)
+            break
+            
+        case .tileGrass:
+            let node = SKSpriteNode(texture: atlasTiles.textureNamed("grass"))
+            node.xScale = 0.5
+            node.yScale = 0.5
+            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            node.position = CGPoint(x: location.x, y: location.y - 16)
+            node.zPosition = GameSettings.GameParams.zValues.zWorld
+            addChild(node)
+            break
+         
+        default:
+            break
+            
         }
         
         

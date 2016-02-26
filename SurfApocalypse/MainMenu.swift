@@ -21,7 +21,7 @@ class MainMenu: SGScene {
     override func didMoveToView(view: SKView) {
         
         let background = SKSpriteNode(imageNamed: "BG")
-        background.posByCanvas(0.5, y: 0.5)
+        background.posByCanvas(0.5, y: 0.7)
         background.xScale = 1.2
         background.yScale = 1.2
         background.zPosition = -1
