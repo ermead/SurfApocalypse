@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class GamePlayMode: SGScene {
+class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     
     //MARK: Instance Variables
     
@@ -23,6 +23,7 @@ class GamePlayMode: SGScene {
     
     var worldLayer: TileLayer!
     var backgroundLayer: SKNode!
+    var overlayGUI: SKNode!
     
     //States
     
@@ -44,9 +45,12 @@ class GamePlayMode: SGScene {
     lazy var componentSystems: [GKComponentSystem] = {
         let parallaxSystem = GKComponentSystem(componentClass: ParallaxComponent.self)
         let animationSystem = GKComponentSystem(componentClass: AnimationComponent.self)
-    
-        return [parallaxSystem, animationSystem ]
+        let physicsSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
+        
+        return [parallaxSystem, animationSystem, physicsSystem]
     }()
+    
+    let sideScrollSystem = SideScrollComponentSystem(componentClass: SideScrollComponent.self)
     
     //Timers
     
@@ -55,6 +59,9 @@ class GamePlayMode: SGScene {
     var lastDeltaTime: NSTimeInterval = 0
     
     //Controls
+    
+    var control = ControlScheme()
+    var pauseLoop = false
     
     //Sounds
     
@@ -80,13 +87,15 @@ class GamePlayMode: SGScene {
             componentSystem.addComponentWithEntity(entity)
         }
         
-        //scrollerSystem.addComponentWithEntity(entity)
+        sideScrollSystem.addComponentWithEntity(entity)
         
     }
     
     //MARK: Life Cycle
     
     override func update(currentTime: NSTimeInterval) {
+        
+        if !pauseLoop {
         var deltaTime = currentTime - lastUpdateTimeInterval
         deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
         lastUpdateTimeInterval = currentTime
@@ -96,8 +105,12 @@ class GamePlayMode: SGScene {
         for componentSystem in componentSystems {
             componentSystem .updateWithDeltaTime(deltaTime)
         }
-        
+            
+        sideScrollSystem.updateWithDeltaTime(deltaTime, controlInput: control)
+            
          //Update Game
+            
+        }
         
     }
     
@@ -105,15 +118,31 @@ class GamePlayMode: SGScene {
     
     override func screenInteractionStarted(location: CGPoint) {
         
+        if let node = nodeAtPoint(location) as? SKLabelNode {
+            
+            if node.name == "PauseButton" {
+                if pauseLoop {
+                    stateMachine.enterState(GameSceneActiveState.self)
+                } else {
+                    stateMachine.enterState(GameScenePausedState.self)
+                }
+                return 
+            }
+            
+        }
+        
+        control.jumpPressed = true
+        
     }
     
     override func screenInteractionMoved(location: CGPoint) {
         
+        control.jumpPressed = false
 
     }
     
     override func screenInteractionEnded(location: CGPoint) {
-        
+        control.jumpPressed = false
     }
     
     override func buttonEvent(event: String, velocity: Float, pushedOn: Bool) {
@@ -122,5 +151,37 @@ class GamePlayMode: SGScene {
     
     override func stickEvent(event: String, point: CGPoint) {
         
+    }
+    
+    //MARK: Camera Settings:
+    
+    
+    func setCameraConstraints() {
+        
+        guard let camera = camera else { return }
+        
+        if let player = worldLayer.childNodeWithName("playerNode") as? EntityNode {
+            
+            let zeroRange = SKRange(constantValue: 0.0)
+            let playerNode = player
+            let playerLocationConstraint = SKConstraint.distance(zeroRange, toNode: playerNode)
+            
+            let scaledSize = CGSize(width: SKMViewSize!.width * camera.xScale, height: SKMViewSize!.height * camera.yScale)
+            
+            let boardContentRect = worldLayer.calculateAccumulatedFrame()   
+            
+            let xInset = min((scaledSize.width / 2), boardContentRect.width / 2)
+            let yInset = min((scaledSize.height / 2), boardContentRect.height / 2)
+            
+            let insetContentRect = boardContentRect.insetBy(dx: xInset, dy: yInset)
+            
+            let xRange = SKRange(lowerLimit: insetContentRect.minX, upperLimit: insetContentRect.maxX)
+            let yRange = SKRange(lowerLimit: insetContentRect.minY, upperLimit: insetContentRect.maxY)
+            
+            let levelEdgeConstraint = SKConstraint.positionX(xRange, y: yRange)
+            levelEdgeConstraint.referenceNode = worldLayer
+            
+            camera.constraints = [playerLocationConstraint, levelEdgeConstraint]
+        }
     }
 }

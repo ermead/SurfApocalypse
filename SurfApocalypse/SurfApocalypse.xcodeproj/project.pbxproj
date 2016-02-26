@@ -145,6 +145,12 @@
 		D7CD63C01C7D040000E8CAF9 /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD63BF1C7D040000E8CAF9 /* AnimationComponent.swift */; };
 		D7CD63C11C7D040000E8CAF9 /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD63BF1C7D040000E8CAF9 /* AnimationComponent.swift */; };
 		D7CD63C21C7D040000E8CAF9 /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD63BF1C7D040000E8CAF9 /* AnimationComponent.swift */; };
+		D7CD64591C80F0FB00E8CAF9 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD64581C80F0FB00E8CAF9 /* PhysicsComponent.swift */; };
+		D7CD645A1C80F0FB00E8CAF9 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD64581C80F0FB00E8CAF9 /* PhysicsComponent.swift */; };
+		D7CD645B1C80F0FB00E8CAF9 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD64581C80F0FB00E8CAF9 /* PhysicsComponent.swift */; };
+		D7CD645D1C80F70B00E8CAF9 /* SideScrollMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD645C1C80F70B00E8CAF9 /* SideScrollMovement.swift */; };
+		D7CD645E1C80F70B00E8CAF9 /* SideScrollMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD645C1C80F70B00E8CAF9 /* SideScrollMovement.swift */; };
+		D7CD645F1C80F70B00E8CAF9 /* SideScrollMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD645C1C80F70B00E8CAF9 /* SideScrollMovement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -210,6 +216,8 @@
 		D7CD63B71C7CFF1A00E8CAF9 /* ParallaxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxComponent.swift; sourceTree = "<group>"; };
 		D7CD63BB1C7D037F00E8CAF9 /* PlayerEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
 		D7CD63BF1C7D040000E8CAF9 /* AnimationComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationComponent.swift; sourceTree = "<group>"; };
+		D7CD64581C80F0FB00E8CAF9 /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
+		D7CD645C1C80F70B00E8CAF9 /* SideScrollMovement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideScrollMovement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +325,8 @@
 				D7CD63B31C7CFE7100E8CAF9 /* SpriteComponent.swift */,
 				D7CD63B71C7CFF1A00E8CAF9 /* ParallaxComponent.swift */,
 				D7CD63BF1C7D040000E8CAF9 /* AnimationComponent.swift */,
+				D7CD64581C80F0FB00E8CAF9 /* PhysicsComponent.swift */,
+				D7CD645C1C80F70B00E8CAF9 /* SideScrollMovement.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -660,10 +670,12 @@
 				D7CD63811C7C200F00E8CAF9 /* SKAction+SpecialEffects.swift in Sources */,
 				D7CD63931C7C200F00E8CAF9 /* Vector3.swift in Sources */,
 				D7CD63751C7C200F00E8CAF9 /* CGPoint+Extensions.swift in Sources */,
+				D7CD645D1C80F70B00E8CAF9 /* SideScrollMovement.swift in Sources */,
 				D7CD637E1C7C200F00E8CAF9 /* SKAction+Extensions.swift in Sources */,
 				D7CD63841C7C200F00E8CAF9 /* SKColor+Extensions.swift in Sources */,
 				D7CD63781C7C200F00E8CAF9 /* CGVector+Extensions.swift in Sources */,
 				D7CD639B1C7CEC8300E8CAF9 /* PlayModeStates.swift in Sources */,
+				D7CD64591C80F0FB00E8CAF9 /* PhysicsComponent.swift in Sources */,
 				D70C42751C7A6C70006E9B76 /* GameViewController.swift in Sources */,
 				D7CD63281C7C044700E8CAF9 /* SG_Resolution.swift in Sources */,
 				D7CD63B01C7CFE0600E8CAF9 /* BackgroundEntity.swift in Sources */,
@@ -676,12 +688,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7CD632B1C7C05B700E8CAF9 /* SG_GameSettings.swift in Sources */,
+				D7CD645E1C80F70B00E8CAF9 /* SideScrollMovement.swift in Sources */,
 				D7CD63881C7C200F00E8CAF9 /* SKNode+Extensions.swift in Sources */,
 				D7CD63B51C7CFE7100E8CAF9 /* SpriteComponent.swift in Sources */,
 				D7CD63911C7C200F00E8CAF9 /* SKTTimingFunctions.swift in Sources */,
 				D7CD63731C7C200F00E8CAF9 /* CGFloat+Extensions.swift in Sources */,
 				D7CD63821C7C200F00E8CAF9 /* SKAction+SpecialEffects.swift in Sources */,
 				D7CD63AD1C7CF64000E8CAF9 /* GameBuildMode.swift in Sources */,
+				D7CD645A1C80F0FB00E8CAF9 /* PhysicsComponent.swift in Sources */,
 				D7CD635F1C7C12EE00E8CAF9 /* MainMenu.swift in Sources */,
 				D7CD637F1C7C200F00E8CAF9 /* SKAction+Extensions.swift in Sources */,
 				D7CD63C11C7D040000E8CAF9 /* AnimationComponent.swift in Sources */,
@@ -714,12 +728,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7CD632C1C7C05B700E8CAF9 /* SG_GameSettings.swift in Sources */,
+				D7CD645F1C80F70B00E8CAF9 /* SideScrollMovement.swift in Sources */,
 				D7CD63891C7C200F00E8CAF9 /* SKNode+Extensions.swift in Sources */,
 				D7CD63B61C7CFE7100E8CAF9 /* SpriteComponent.swift in Sources */,
 				D7CD63921C7C200F00E8CAF9 /* SKTTimingFunctions.swift in Sources */,
 				D7CD63741C7C200F00E8CAF9 /* CGFloat+Extensions.swift in Sources */,
 				D7CD63831C7C200F00E8CAF9 /* SKAction+SpecialEffects.swift in Sources */,
 				D7CD63AE1C7CF64000E8CAF9 /* GameBuildMode.swift in Sources */,
+				D7CD645B1C80F0FB00E8CAF9 /* PhysicsComponent.swift in Sources */,
 				D7CD63601C7C12EE00E8CAF9 /* MainMenu.swift in Sources */,
 				D7CD63801C7C200F00E8CAF9 /* SKAction+Extensions.swift in Sources */,
 				D7CD63C21C7D040000E8CAF9 /* AnimationComponent.swift in Sources */,

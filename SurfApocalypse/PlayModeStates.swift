@@ -23,6 +23,9 @@ class GameSceneInitialState: GameSceneState {
     override func didEnterWithPreviousState(previousState: GKState?) {
         //Delegates
         
+        gs.physicsWorld.contactDelegate = gs
+        gs.physicsWorld.gravity = CGVector(dx: 0.0, dy: -1.0)
+        
         //Camera
         let myCamera = SKCameraNode()
         gs.camera = myCamera
@@ -34,7 +37,10 @@ class GameSceneInitialState: GameSceneState {
         gs.worldLayer = TileLayer(levelIndex: gs.levelIndex, typeIndex: .setMain)
         gs.addChild(gs.worldLayer)
         gs.backgroundLayer = SKNode()
+        gs.overlayGUI = SKNode()
         myCamera.addChild(gs.backgroundLayer)
+        myCamera.addChild(gs.overlayGUI)
+        
         
         //Initial Entities
         let background01 = BackgroundEntity(movementFactor: CGPoint(x: -0.33, y: 0.0), image: SKTexture(imageNamed: "BG001") , size: SKMSceneSize!, position:CGPointZero, reset: true)
@@ -67,10 +73,20 @@ class GameSceneInitialState: GameSceneState {
             gs.centerCameraOnPoint(playerPlaceholder.position)
             gs.addEntity(player, toLayer: gs.worldLayer)
             //gs.worldFrame = gs.worldLayer.calculateAccumulatedFrame()
-            //gs.setCameraConstraints()
+            gs.setCameraConstraints()
         } else {
             fatalError("[Play Mode: No placeholder for player!")
         }
+        
+        //Setup UI
+        let pauseButton = SKLabelNode(fontNamed: "MarkerFelt-Wide")
+        pauseButton.posByScreen(0.46, y: 0.42)
+        pauseButton.fontSize = 40
+        pauseButton.text = gs.lt("II")
+        pauseButton.fontColor = SKColor.whiteColor()
+        pauseButton.zPosition = 150
+        pauseButton.name = "PauseButton"
+        gs.overlayGUI.addChild(pauseButton)
         
     }
     
@@ -84,7 +100,14 @@ class GameSceneActiveState: GameSceneState {
 }
 
 class GameScenePausedState: GameSceneState {
-    
+    override func didEnterWithPreviousState(previousState: GKState?) {
+        gs.pauseLoop = true
+        gs.paused = true
+    }
+    override func willExitWithNextState(nextState: GKState) {
+        gs.pauseLoop = false
+        gs.paused = false
+    }
 }
 
 class GameSceneVictorySeqState: GameSceneState {
