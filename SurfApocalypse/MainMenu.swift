@@ -127,9 +127,9 @@ class MainMenu: SGScene {
     override func pressesBegan(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
         self.runAction(sndButtonClick)
         
-//        let nextScene = CharSelect(size: self.scene!.size)
-//        nextScene.scaleMode = self.scaleMode
-//        self.view?.presentScene(nextScene)
+        let nextScene = CharSelect(size: self.scene!.size)
+        nextScene.scaleMode = self.scaleMode
+        self.view?.presentScene(nextScene)
     }
     #endif
 }

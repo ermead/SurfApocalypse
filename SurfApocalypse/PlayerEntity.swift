@@ -44,6 +44,14 @@ class PlayerEntity: SGEntity {
         
     }
     
+    override func updateWithDeltaTime(seconds: NSTimeInterval) {
+        super.updateWithDeltaTime(seconds)
+        
+        if !gameScene.worldFrame.contains(spriteComponent.node.position) {
+            playerDied()
+        }
+    }
+    
     func loadAnimations(textureAtlas:SKTextureAtlas) -> [AnimationState: Animation] {
         var animations = [AnimationState: Animation]()
         
@@ -70,14 +78,20 @@ class PlayerEntity: SGEntity {
         if entity.name == "gemEntity" {
             if let spriteComponent = entity.componentForClass(SpriteComponent.self) {
                 spriteComponent.node.removeFromParent()
-      
+                gameScene.gemsCollected++
+                gameScene.runAction(gameScene.sndCollectGood)
             }
         }
-
+        
+        if entity.name == "killZoneEntity" {
+            playerDied()
+        }
+        
     }
     
-    
-    
-    
-    
+    func playerDied() {
+        gameScene.stateMachine.enterState(GameSceneLoseState.self)
+    }
+
+   
 }

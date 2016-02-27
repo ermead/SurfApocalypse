@@ -38,6 +38,15 @@
 		D7CBFD8B1C815BED00800CCB /* LevelSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD8A1C815BED00800CCB /* LevelSelect.swift */; };
 		D7CBFD8C1C815BED00800CCB /* LevelSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD8A1C815BED00800CCB /* LevelSelect.swift */; };
 		D7CBFD8D1C815BED00800CCB /* LevelSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD8A1C815BED00800CCB /* LevelSelect.swift */; };
+		D7CBFD8F1C81617400800CCB /* PostScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD8E1C81617400800CCB /* PostScene.swift */; };
+		D7CBFD901C81617400800CCB /* PostScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD8E1C81617400800CCB /* PostScene.swift */; };
+		D7CBFD911C81617400800CCB /* PostScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD8E1C81617400800CCB /* PostScene.swift */; };
+		D7CBFD931C81621800800CCB /* KillZoneEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD921C81621800800CCB /* KillZoneEntity.swift */; };
+		D7CBFD941C81621800800CCB /* KillZoneEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD921C81621800800CCB /* KillZoneEntity.swift */; };
+		D7CBFD951C81621800800CCB /* KillZoneEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD921C81621800800CCB /* KillZoneEntity.swift */; };
+		D7CBFD971C81622B00800CCB /* ChaseScrollMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD961C81622B00800CCB /* ChaseScrollMovement.swift */; };
+		D7CBFD981C81622B00800CCB /* ChaseScrollMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD961C81622B00800CCB /* ChaseScrollMovement.swift */; };
+		D7CBFD991C81622B00800CCB /* ChaseScrollMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD961C81622B00800CCB /* ChaseScrollMovement.swift */; };
 		D7CD631A1C7BFD4F00E8CAF9 /* SGScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD63191C7BFD4F00E8CAF9 /* SGScene.swift */; };
 		D7CD631B1C7BFD6D00E8CAF9 /* SGScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD63191C7BFD4F00E8CAF9 /* SGScene.swift */; };
 		D7CD631C1C7BFD6D00E8CAF9 /* SGScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD63191C7BFD4F00E8CAF9 /* SGScene.swift */; };
@@ -194,6 +203,9 @@
 		D7CBFD821C8152F900800CCB /* FinishEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishEntity.swift; sourceTree = "<group>"; };
 		D7CBFD861C815B2E00800CCB /* CharSelect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharSelect.swift; sourceTree = "<group>"; };
 		D7CBFD8A1C815BED00800CCB /* LevelSelect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelect.swift; sourceTree = "<group>"; };
+		D7CBFD8E1C81617400800CCB /* PostScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostScene.swift; sourceTree = "<group>"; };
+		D7CBFD921C81621800800CCB /* KillZoneEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KillZoneEntity.swift; sourceTree = "<group>"; };
+		D7CBFD961C81622B00800CCB /* ChaseScrollMovement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChaseScrollMovement.swift; sourceTree = "<group>"; };
 		D7CD63191C7BFD4F00E8CAF9 /* SGScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGScene.swift; sourceTree = "<group>"; };
 		D7CD631E1C7BFF2900E8CAF9 /* IOS_Responder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOS_Responder.swift; sourceTree = "<group>"; };
 		D7CD63221C7BFF8E00E8CAF9 /* OSX_Responder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_Responder.swift; sourceTree = "<group>"; };
@@ -347,6 +359,7 @@
 				D7CD63BF1C7D040000E8CAF9 /* AnimationComponent.swift */,
 				D7CD64581C80F0FB00E8CAF9 /* PhysicsComponent.swift */,
 				D7CD645C1C80F70B00E8CAF9 /* SideScrollMovement.swift */,
+				D7CBFD961C81622B00800CCB /* ChaseScrollMovement.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -359,6 +372,7 @@
 				D7CBFD7A1C8151A500800CCB /* SGEntity.swift */,
 				D7CBFD7E1C81529200800CCB /* GemEntity.swift */,
 				D7CBFD821C8152F900800CCB /* FinishEntity.swift */,
+				D7CBFD921C81621800800CCB /* KillZoneEntity.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -402,6 +416,7 @@
 				D7CD63AB1C7CF64000E8CAF9 /* GameBuildMode.swift */,
 				D7CBFD861C815B2E00800CCB /* CharSelect.swift */,
 				D7CBFD8A1C815BED00800CCB /* LevelSelect.swift */,
+				D7CBFD8E1C81617400800CCB /* PostScene.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -677,6 +692,7 @@
 				D7CBFD8B1C815BED00800CCB /* LevelSelect.swift in Sources */,
 				D7CBFD7B1C8151A500800CCB /* SGEntity.swift in Sources */,
 				D7CD631A1C7BFD4F00E8CAF9 /* SGScene.swift in Sources */,
+				D7CBFD8F1C81617400800CCB /* PostScene.swift in Sources */,
 				D7CD638D1C7C200F00E8CAF9 /* SKTEffects.swift in Sources */,
 				D7CD638A1C7C200F00E8CAF9 /* SKTAudio.swift in Sources */,
 				D7CD63C01C7D040000E8CAF9 /* AnimationComponent.swift in Sources */,
@@ -688,6 +704,7 @@
 				D7CBFD871C815B2E00800CCB /* CharSelect.swift in Sources */,
 				D7CD637B1C7C200F00E8CAF9 /* Int+Extensions.swift in Sources */,
 				D7CD639F1C7CEFD400E8CAF9 /* TileMapBuilder.swift in Sources */,
+				D7CBFD971C81622B00800CCB /* ChaseScrollMovement.swift in Sources */,
 				D7CD632A1C7C05B700E8CAF9 /* SG_GameSettings.swift in Sources */,
 				D7CD63871C7C200F00E8CAF9 /* SKNode+Extensions.swift in Sources */,
 				D7CBFD831C8152F900800CCB /* FinishEntity.swift in Sources */,
@@ -707,6 +724,7 @@
 				D7CD639B1C7CEC8300E8CAF9 /* PlayModeStates.swift in Sources */,
 				D7CD64591C80F0FB00E8CAF9 /* PhysicsComponent.swift in Sources */,
 				D70C42751C7A6C70006E9B76 /* GameViewController.swift in Sources */,
+				D7CBFD931C81621800800CCB /* KillZoneEntity.swift in Sources */,
 				D7CD63281C7C044700E8CAF9 /* SG_Resolution.swift in Sources */,
 				D7CD63B01C7CFE0600E8CAF9 /* BackgroundEntity.swift in Sources */,
 				D70C426F1C7A6C70006E9B76 /* AppDelegate.swift in Sources */,
@@ -719,6 +737,7 @@
 			files = (
 				D7CD632B1C7C05B700E8CAF9 /* SG_GameSettings.swift in Sources */,
 				D7CD645E1C80F70B00E8CAF9 /* SideScrollMovement.swift in Sources */,
+				D7CBFD901C81617400800CCB /* PostScene.swift in Sources */,
 				D7CD63881C7C200F00E8CAF9 /* SKNode+Extensions.swift in Sources */,
 				D7CD63B51C7CFE7100E8CAF9 /* SpriteComponent.swift in Sources */,
 				D7CD63911C7C200F00E8CAF9 /* SKTTimingFunctions.swift in Sources */,
@@ -736,6 +755,7 @@
 				D7CD631B1C7BFD6D00E8CAF9 /* SGScene.swift in Sources */,
 				D7CD63791C7C200F00E8CAF9 /* CGVector+Extensions.swift in Sources */,
 				D7CD63631C7C151800E8CAF9 /* SG_Resolution.swift in Sources */,
+				D7CBFD941C81621800800CCB /* KillZoneEntity.swift in Sources */,
 				D7CD63BD1C7D037F00E8CAF9 /* PlayerEntity.swift in Sources */,
 				D7CD63A41C7CF17600E8CAF9 /* TileMapLevels.swift in Sources */,
 				D7CBFD801C81529200800CCB /* GemEntity.swift in Sources */,
@@ -755,6 +775,7 @@
 				D7CD639C1C7CEC8300E8CAF9 /* PlayModeStates.swift in Sources */,
 				D7CD63611C7C151400E8CAF9 /* SG_Extension.swift in Sources */,
 				D7CBFD841C8152F900800CCB /* FinishEntity.swift in Sources */,
+				D7CBFD981C81622B00800CCB /* ChaseScrollMovement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,6 +785,7 @@
 			files = (
 				D7CD632C1C7C05B700E8CAF9 /* SG_GameSettings.swift in Sources */,
 				D7CD645F1C80F70B00E8CAF9 /* SideScrollMovement.swift in Sources */,
+				D7CBFD911C81617400800CCB /* PostScene.swift in Sources */,
 				D7CD63891C7C200F00E8CAF9 /* SKNode+Extensions.swift in Sources */,
 				D7CD63B61C7CFE7100E8CAF9 /* SpriteComponent.swift in Sources */,
 				D7CD63921C7C200F00E8CAF9 /* SKTTimingFunctions.swift in Sources */,
@@ -781,6 +803,7 @@
 				D7CD631C1C7BFD6D00E8CAF9 /* SGScene.swift in Sources */,
 				D7CD637A1C7C200F00E8CAF9 /* CGVector+Extensions.swift in Sources */,
 				D7CD63641C7C151900E8CAF9 /* SG_Resolution.swift in Sources */,
+				D7CBFD951C81621800800CCB /* KillZoneEntity.swift in Sources */,
 				D7CD63BE1C7D037F00E8CAF9 /* PlayerEntity.swift in Sources */,
 				D7CD63A51C7CF17600E8CAF9 /* TileMapLevels.swift in Sources */,
 				D7CBFD811C81529200800CCB /* GemEntity.swift in Sources */,
@@ -800,6 +823,7 @@
 				D7CD639D1C7CEC8300E8CAF9 /* PlayModeStates.swift in Sources */,
 				D7CD63621C7C151500E8CAF9 /* SG_Extension.swift in Sources */,
 				D7CBFD851C8152F900800CCB /* FinishEntity.swift in Sources */,
+				D7CBFD991C81622B00800CCB /* ChaseScrollMovement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

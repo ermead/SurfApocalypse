@@ -64,7 +64,7 @@ class SideScrollComponent: GKComponent {
         //Jump
         if controlInput.jumpPressed && !isJumping {
             if let playerEnt = entity as? PlayerEntity {
-                //playerEnt.gameScene.runAction(playerEnt.gameScene.sndJump)
+                playerEnt.gameScene.runAction(playerEnt.gameScene.sndJump)
             }
             isJumping = true
             jumpTime = 0.2

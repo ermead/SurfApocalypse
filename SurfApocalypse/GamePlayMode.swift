@@ -19,6 +19,10 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     
     //Generators
     
+    //Level Data
+    var gemsCollected = 0
+    var worldFrame = CGRect()
+    
     //Layers
     
     var worldLayer: TileLayer!
@@ -45,9 +49,9 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     lazy var componentSystems: [GKComponentSystem] = {
         let parallaxSystem = GKComponentSystem(componentClass: ParallaxComponent.self)
         let animationSystem = GKComponentSystem(componentClass: AnimationComponent.self)
-        let physicsSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
-        
-        return [parallaxSystem, animationSystem, physicsSystem]
+       // let physicsSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
+        let scrollerSystem = GKComponentSystem(componentClass: ChaseScrollComponent.self)
+        return [parallaxSystem, animationSystem, scrollerSystem]
     }()
     
     let sideScrollSystem = SideScrollComponentSystem(componentClass: SideScrollComponent.self)
@@ -64,6 +68,9 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     var pauseLoop = false
     
     //Sounds
+    
+    let sndCollectGood = SKAction.playSoundFileNamed("collect_good.wav", waitForCompletion: false)
+    let sndJump = SKAction.playSoundFileNamed("jump.wav", waitForCompletion: false)
     
     //MARK: Initializer
     
@@ -153,6 +160,39 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         
     }
     
+    #if !os(OSX)
+    override func pressesBegan(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+        for press in presses {
+            switch press.type {
+            case .Select:
+                control.jumpPressed = true
+                break
+            case .PlayPause:
+                if pauseLoop {
+                    stateMachine.enterState(GameSceneActiveState.self)
+                } else {
+                    stateMachine.enterState(GameScenePausedState.self)
+                }
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    override func pressesEnded(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+        control.jumpPressed = false
+    }
+    
+    override func pressesCancelled(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+        control.jumpPressed = false
+    }
+    
+    override func pressesChanged(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+        control.jumpPressed = false
+    }
+    #endif
+    
     //Physics Delegate
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -187,7 +227,7 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
             
             let scaledSize = CGSize(width: SKMViewSize!.width * camera.xScale, height: SKMViewSize!.height * camera.yScale)
             
-            let boardContentRect = worldLayer.calculateAccumulatedFrame()   
+            let boardContentRect = worldFrame
             
             let xInset = min((scaledSize.width / 2), boardContentRect.width / 2)
             let yInset = min((scaledSize.height / 2), boardContentRect.height / 2)

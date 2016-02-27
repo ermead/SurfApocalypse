@@ -72,7 +72,7 @@ class GameSceneInitialState: GameSceneState {
             player.animationComponent.requestedAnimationState = .Run
             gs.centerCameraOnPoint(playerPlaceholder.position)
             gs.addEntity(player, toLayer: gs.worldLayer)
-            //gs.worldFrame = gs.worldLayer.calculateAccumulatedFrame()
+            gs.worldFrame = gs.worldLayer.calculateAccumulatedFrame()
             gs.setCameraConstraints()
         } else {
             fatalError("[Play Mode: No placeholder for player!")
@@ -91,6 +91,12 @@ class GameSceneInitialState: GameSceneState {
             gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
             self.gs.addEntity(gem, toLayer: self.gs.worldLayer)
         }
+        
+        let killZone = KillZoneEntity(position: gs.worldFrame.origin, size: CGSize(width: 20.0, height: gs.worldFrame.size.height), texture: SKTexture(noiseWithSmoothness: 0.5, size: CGSize(width: 20.0, height: gs.worldFrame.size.height), grayscale: true))
+        killZone.spriteComponent.node.alpha = 0.5
+        killZone.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zPlayer + 2
+        killZone.spriteComponent.node.position = CGPoint(x: killZone.spriteComponent.node.position.x + (killZone.spriteComponent.node.size.width / 2), y: killZone.spriteComponent.node.position.y + (killZone.spriteComponent.node.size.height / 2))
+        gs.addEntity(killZone, toLayer: gs.worldLayer)
 
         
         //Setup UI
@@ -132,17 +138,23 @@ class GameSceneVictorySeqState: GameSceneState {
 class GameSceneWinState: GameSceneState {
     
     override func didEnterWithPreviousState(previousState: GKState?) {
-        //let nextScene = PostScreen(size: gs.scene!.size)
-        let nextScene = MainMenu(size: gs.scene!.size)
-//        nextScene.level = gs.levelIndex
-//        nextScene.win = true
-//        nextScene.gems = gs.gemsCollected
+        let nextScene = PostScreen(size: gs.scene!.size)
+        nextScene.level = gs.levelIndex
+        nextScene.win = true
+        nextScene.gems = gs.gemsCollected
         nextScene.scaleMode = gs.scaleMode
         gs.view?.presentScene(nextScene)
     }
 }
 
 class GameSceneLoseState: GameSceneState {
-    
+    override func didEnterWithPreviousState(previousState: GKState?) {
+        let nextScene = PostScreen(size: gs.scene!.size)
+        nextScene.level = gs.levelIndex
+        nextScene.win = false
+        nextScene.gems = gs.gemsCollected
+        nextScene.scaleMode = gs.scaleMode
+        gs.view?.presentScene(nextScene)
+    }
 }
 
