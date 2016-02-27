@@ -78,6 +78,21 @@ class GameSceneInitialState: GameSceneState {
             fatalError("[Play Mode: No placeholder for player!")
         }
         
+        
+        
+        gs.worldLayer.enumerateChildNodesWithName("placeholder_FinishPoint") { (node, stop) -> Void in
+            let finish = FinishEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: SKTexture())
+            self.gs.addEntity(finish, toLayer: self.gs.worldLayer)
+        }
+        
+        let tileAtlas = SKTextureAtlas(named: "Tiles")
+        gs.worldLayer.enumerateChildNodesWithName("placeholder_Gem") { (node, stop) -> Void in
+            let gem = GemEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("gem"))
+            gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
+            self.gs.addEntity(gem, toLayer: self.gs.worldLayer)
+        }
+
+        
         //Setup UI
         let pauseButton = SKLabelNode(fontNamed: "MarkerFelt-Wide")
         pauseButton.posByScreen(0.46, y: 0.42)
@@ -116,6 +131,15 @@ class GameSceneVictorySeqState: GameSceneState {
 
 class GameSceneWinState: GameSceneState {
     
+    override func didEnterWithPreviousState(previousState: GKState?) {
+        //let nextScene = PostScreen(size: gs.scene!.size)
+        let nextScene = MainMenu(size: gs.scene!.size)
+//        nextScene.level = gs.levelIndex
+//        nextScene.win = true
+//        nextScene.gems = gs.gemsCollected
+        nextScene.scaleMode = gs.scaleMode
+        gs.view?.presentScene(nextScene)
+    }
 }
 
 class GameSceneLoseState: GameSceneState {

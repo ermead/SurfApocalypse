@@ -103,7 +103,7 @@ class MainMenu: SGScene {
             
             self.runAction(sndButtonClick)
             
-            let nextScene = GamePlayMode(size: self.scene!.size)
+            let nextScene = CharSelect(size: self.scene!.size)
             nextScene.scaleMode = self.scaleMode
             self.view?.presentScene(nextScene, transition: SKTransition.fadeWithDuration(0.5))
             

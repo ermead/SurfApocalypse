@@ -350,6 +350,7 @@ class TileLayer: SKNode, tileMapDelegate {
             node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
             node.position = CGPoint(x: location.x, y: location.y - 16)
             node.zPosition = GameSettings.GameParams.zValues.zWorld
+            node.name = "placeholder_Gem"
             addChild(node)
             break
             
@@ -360,6 +361,7 @@ class TileLayer: SKNode, tileMapDelegate {
             node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
             node.position = CGPoint(x: location.x, y: location.y - 16)
             node.zPosition = GameSettings.GameParams.zValues.zWorld
+            node.name = "placeholder_Gem"
             addChild(node)
             break
             

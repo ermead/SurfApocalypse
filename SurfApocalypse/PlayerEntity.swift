@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class PlayerEntity: GKEntity {
+class PlayerEntity: SGEntity {
     
     var spriteComponent: SpriteComponent!
     var animationComponent: AnimationComponent!
@@ -40,7 +40,7 @@ class PlayerEntity: GKEntity {
         //Final setup of components
         spriteComponent.node.physicsBody = physicsComponent.physicsBody
         spriteComponent.node.name = "playerNode"
-        //name = "playerEntity"
+        name = "playerEntity"
         
     }
     
@@ -61,6 +61,20 @@ class PlayerEntity: GKEntity {
     }
     
     
+    override func contactWith(entity:SGEntity) {
+        
+        if entity.name == "finishEntity" {
+            gameScene.stateMachine.enterState(GameSceneWinState.self)
+        }
+        
+        if entity.name == "gemEntity" {
+            if let spriteComponent = entity.componentForClass(SpriteComponent.self) {
+                spriteComponent.node.removeFromParent()
+      
+            }
+        }
+
+    }
     
     
     

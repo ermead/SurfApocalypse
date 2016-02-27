@@ -31,7 +31,7 @@ class SideScrollComponentSystem: GKComponentSystem {
 
 class SideScrollComponent: GKComponent {
     
-    var movementSpeed = CGPoint(x: 120.0, y: 0.0)
+    var movementSpeed = CGPoint(x: 90.0, y: 0.0)
     
     //State
     var isJumping = false
@@ -72,7 +72,7 @@ class SideScrollComponent: GKComponent {
         }
         if (jumpTime > 0.0) {
             jumpTime = jumpTime - CGFloat(seconds)
-            spriteComponent.node.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: (seconds * 35.0)), atPoint: spriteComponent.node.position)
+            spriteComponent.node.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: (seconds * 25.0)), atPoint: spriteComponent.node.position)
         }
         
         if spriteComponent.node.physicsBody?.allContactedBodies().count > 0 {
