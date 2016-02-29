@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 
+@available(OSX 10.11, *)
 class ParallaxComponent: GKComponent {
     
     var movementFactor = CGPointZero

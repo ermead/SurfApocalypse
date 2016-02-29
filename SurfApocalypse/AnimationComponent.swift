@@ -17,6 +17,7 @@ struct Animation {
     let textureSize: CGSize
 }
 
+@available(OSX 10.11, *)
 class AnimationComponent: GKComponent {
     
     static let actionKey = "Action"

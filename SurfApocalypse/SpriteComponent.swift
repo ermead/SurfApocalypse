@@ -10,10 +10,12 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+@available(OSX 10.11, *)
 class EntityNode: SKSpriteNode {
     weak var entity: GKEntity!
 }
 
+@available(OSX 10.11, *)
 class SpriteComponent: GKComponent {
     
     let node: EntityNode

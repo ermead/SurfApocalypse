@@ -11,6 +11,7 @@ import Foundation
 
 import SpriteKit
 
+@available(OSX 10.11, *)
 class PostScreen: SGScene {
     
     var level:Int?

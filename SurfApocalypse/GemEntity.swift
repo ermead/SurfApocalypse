@@ -10,12 +10,14 @@
 import SpriteKit
 import GameplayKit
 
+
+@available(OSX 10.11, *)
 class GemEntity: SGEntity {
     
     var spriteComponent: SpriteComponent!
     var physicsComponent: PhysicsComponent!
     
-    init(position: CGPoint, size: CGSize, texture:SKTexture) {
+    init(position: CGPoint, size: CGSize, texture:SKTexture ) {
         super.init()
         
         //Initialize components

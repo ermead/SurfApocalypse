@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 
+@available(OSX 10.11, *)
 class ChaseScrollComponent: GKComponent {
     
     var movementSpeed = CGPoint(x: 85.0, y: 0.0)

@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+@available(OSX 10.11, *)
 class GameSceneState: GKState {
     unowned let gs: GamePlayMode
     init(scene: GamePlayMode) {
@@ -17,6 +18,7 @@ class GameSceneState: GKState {
     }
 }
 
+@available(OSX 10.11, *)
 class GameSceneInitialState: GameSceneState {
     
     
@@ -78,26 +80,37 @@ class GameSceneInitialState: GameSceneState {
             fatalError("[Play Mode: No placeholder for player!")
         }
         
-        
-        
         gs.worldLayer.enumerateChildNodesWithName("placeholder_FinishPoint") { (node, stop) -> Void in
             let finish = FinishEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: SKTexture())
             self.gs.addEntity(finish, toLayer: self.gs.worldLayer)
         }
         
         let tileAtlas = SKTextureAtlas(named: "Tiles")
+        
         gs.worldLayer.enumerateChildNodesWithName("placeholder_Gem") { (node, stop) -> Void in
             let gem = GemEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("gem"))
             gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
             self.gs.addEntity(gem, toLayer: self.gs.worldLayer)
         }
+        gs.worldLayer.enumerateChildNodesWithName("placeholder_Gem_diamond") { (node, stop) -> Void in
+            let gem = GemEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("diamond"))
+            gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
+            self.gs.addEntity(gem, toLayer: self.gs.worldLayer)
+        }
+        gs.worldLayer.enumerateChildNodesWithName("placeholder_Gem_gumdrop") { (node, stop) -> Void in
+            let gem = GemEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("gumdrop"))
+            gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
+            self.gs.addEntity(gem, toLayer: self.gs.worldLayer)
+        }
         
+        
+        /*
         let killZone = KillZoneEntity(position: gs.worldFrame.origin, size: CGSize(width: 20.0, height: gs.worldFrame.size.height), texture: SKTexture(noiseWithSmoothness: 0.5, size: CGSize(width: 20.0, height: gs.worldFrame.size.height), grayscale: true))
         killZone.spriteComponent.node.alpha = 0.5
         killZone.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zPlayer + 2
         killZone.spriteComponent.node.position = CGPoint(x: killZone.spriteComponent.node.position.x + (killZone.spriteComponent.node.size.width / 2), y: killZone.spriteComponent.node.position.y + (killZone.spriteComponent.node.size.height / 2))
         gs.addEntity(killZone, toLayer: gs.worldLayer)
-
+        */
         
         //Setup UI
         let pauseButton = SKLabelNode(fontNamed: "MarkerFelt-Wide")
@@ -116,10 +129,12 @@ class GameSceneInitialState: GameSceneState {
     }
 }
 
+@available(OSX 10.11, *)
 class GameSceneActiveState: GameSceneState {
     
 }
 
+@available(OSX 10.11, *)
 class GameScenePausedState: GameSceneState {
     override func didEnterWithPreviousState(previousState: GKState?) {
         gs.pauseLoop = true
@@ -131,10 +146,12 @@ class GameScenePausedState: GameSceneState {
     }
 }
 
+@available(OSX 10.11, *)
 class GameSceneVictorySeqState: GameSceneState {
     
 }
 
+@available(OSX 10.11, *)
 class GameSceneWinState: GameSceneState {
     
     override func didEnterWithPreviousState(previousState: GKState?) {
@@ -147,6 +164,7 @@ class GameSceneWinState: GameSceneState {
     }
 }
 
+@available(OSX 10.11, *)
 class GameSceneLoseState: GameSceneState {
     override func didEnterWithPreviousState(previousState: GKState?) {
         let nextScene = PostScreen(size: gs.scene!.size)

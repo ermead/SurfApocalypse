@@ -10,8 +10,9 @@
 import SpriteKit
 import GameplayKit
 
-let randomSceneryArt = ["gumdrop","Mushroom_1","Mushroom_2","Stone","diamond"]
+let randomSceneryArt = ["Mushroom_1","Mushroom_2","Stone"]
 
+@available(OSX 10.11, *)
 class TileLayer: SKNode, tileMapDelegate {
     
     var levelGenerator = tileMapBuilder()
@@ -344,24 +345,16 @@ class TileLayer: SKNode, tileMapDelegate {
             break
             
         case .tileGumdrop:
-            let node = SKSpriteNode(texture: atlasTiles.textureNamed("gumdrop"))
-            node.xScale = 0.5
-            node.yScale = 0.5
-            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-            node.position = CGPoint(x: location.x, y: location.y - 16)
-            node.zPosition = GameSettings.GameParams.zValues.zWorld
-            node.name = "placeholder_Gem"
+            let node = SKNode()
+            node.position = location
+            node.name = "placeholder_Gem_gumdrop"
             addChild(node)
             break
             
         case .tileDiamond:
-            let node = SKSpriteNode(texture: atlasTiles.textureNamed("diamond"))
-            node.xScale = 0.5
-            node.yScale = 0.5
-            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-            node.position = CGPoint(x: location.x, y: location.y - 16)
-            node.zPosition = GameSettings.GameParams.zValues.zWorld
-            node.name = "placeholder_Gem"
+            let node = SKNode()
+            node.position = location
+            node.name = "placeholder_Gem_diamond"
             addChild(node)
             break
             

@@ -10,6 +10,7 @@
 import SpriteKit
 import GameplayKit
 
+@available(OSX 10.11, *)
 class FinishEntity: SGEntity {
     
     var spriteComponent: SpriteComponent!

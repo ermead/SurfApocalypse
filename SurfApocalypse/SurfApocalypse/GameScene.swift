@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+@available(OSX 10.11, *)
 class GameScene: SGScene {
     
     override func didMoveToView(view: SKView) {

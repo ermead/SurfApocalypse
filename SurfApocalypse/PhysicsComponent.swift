@@ -18,6 +18,7 @@ enum PhysicsBodyShape {
     case bottomOutline
 }
 
+@available(OSX 10.11, *)
 class PhysicsComponent: GKComponent {
     
     var physicsBody = SKPhysicsBody()

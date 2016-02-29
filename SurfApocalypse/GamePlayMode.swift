@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+@available(OSX 10.11, *)
 class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     
     //MARK: Instance Variables
@@ -50,8 +51,9 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         let parallaxSystem = GKComponentSystem(componentClass: ParallaxComponent.self)
         let animationSystem = GKComponentSystem(componentClass: AnimationComponent.self)
        // let physicsSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
-        let scrollerSystem = GKComponentSystem(componentClass: ChaseScrollComponent.self)
-        return [parallaxSystem, animationSystem, scrollerSystem]
+        //let scrollerSystem = GKComponentSystem(componentClass: ChaseScrollComponent.self)
+        //return [parallaxSystem, animationSystem, scrollerSystem]
+        return [parallaxSystem, animationSystem]
     }()
     
     let sideScrollSystem = SideScrollComponentSystem(componentClass: SideScrollComponent.self)

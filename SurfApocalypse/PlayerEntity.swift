@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+@available(OSX 10.11, *)
 class PlayerEntity: SGEntity {
     
     var spriteComponent: SpriteComponent!
@@ -78,9 +79,11 @@ class PlayerEntity: SGEntity {
         if entity.name == "gemEntity" {
             if let spriteComponent = entity.componentForClass(SpriteComponent.self) {
                 spriteComponent.node.removeFromParent()
-                gameScene.gemsCollected++
                 gameScene.runAction(gameScene.sndCollectGood)
+             
+                gameScene.gemsCollected++
             }
+            
         }
         
         if entity.name == "killZoneEntity" {

@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+@available(OSX 10.11, *)
 class BackgroundEntity: GKEntity {
     
     var spriteComponent: SpriteComponent!

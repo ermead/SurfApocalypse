@@ -10,6 +10,7 @@
 import Cocoa
 import SpriteKit
 
+@available(OSX 10.11, *)
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     

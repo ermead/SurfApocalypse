@@ -18,6 +18,7 @@ struct ControlScheme {
     
 }
 
+@available(OSX 10.11, *)
 class SideScrollComponentSystem: GKComponentSystem {
     
     func updateWithDeltaTime(seconds: NSTimeInterval, controlInput: ControlScheme) {
@@ -29,9 +30,10 @@ class SideScrollComponentSystem: GKComponentSystem {
     }
 }
 
+@available(OSX 10.11, *)
 class SideScrollComponent: GKComponent {
     
-    var movementSpeed = CGPoint(x: 90.0, y: 0.0)
+    var movementSpeed = CGPoint(x: 100.0, y: 0.0)
     
     //State
     var isJumping = false
@@ -67,12 +69,12 @@ class SideScrollComponent: GKComponent {
                 playerEnt.gameScene.runAction(playerEnt.gameScene.sndJump)
             }
             isJumping = true
-            jumpTime = 0.2
+            jumpTime = 0.1
             animationComponent.requestedAnimationState = .Jump
         }
         if (jumpTime > 0.0) {
             jumpTime = jumpTime - CGFloat(seconds)
-            spriteComponent.node.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: (seconds * 25.0)), atPoint: spriteComponent.node.position)
+            spriteComponent.node.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: (seconds * 35.0)), atPoint: spriteComponent.node.position)
         }
         
         if spriteComponent.node.physicsBody?.allContactedBodies().count > 0 {

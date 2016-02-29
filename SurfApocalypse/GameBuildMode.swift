@@ -15,7 +15,7 @@ enum toolSelection {
     case toolAdd
     case toolRemove
 }
-
+@available(OSX 10.11, *)
 class GameBuildMode: SGScene {
     
     //Layers
@@ -38,7 +38,9 @@ class GameBuildMode: SGScene {
     override func didMoveToView(view: SKView) {
         
         //Setup camera
+       
         let myCamera = SKCameraNode()
+       
         camera = myCamera
         addChild(myCamera)
         
@@ -215,6 +217,18 @@ class GameBuildMode: SGScene {
                 switch name {
                 case "placeholder_Gem":
                     let label = SKLabelNode(text: "G")
+                    label.zPosition = GameSettings.GameParams.zValues.zWorld + 1
+                    label.position = child.position
+                    worldLayer.addChild(label)
+                    break
+                case "placeholder_Gem_diamond":
+                    let label = SKLabelNode(text: "D")
+                    label.zPosition = GameSettings.GameParams.zValues.zWorld + 1
+                    label.position = child.position
+                    worldLayer.addChild(label)
+                    break
+                case "placeholder_Gem_gumdrop":
+                    let label = SKLabelNode(text: "GD")
                     label.zPosition = GameSettings.GameParams.zValues.zWorld + 1
                     label.position = child.position
                     worldLayer.addChild(label)

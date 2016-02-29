@@ -9,6 +9,7 @@
 
 import SpriteKit
 
+@available(OSX 10.11, *)
 class LevelSelect: SGScene {
     
     //Sounds
