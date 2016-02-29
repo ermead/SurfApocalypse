@@ -17,6 +17,8 @@ class PostScreen: SGScene {
     var level:Int?
     var win:Bool?
     var gems:Int?
+    var diamonds: Int?
+    var gumdrops: Int?
     
     override func didMoveToView(view: SKView) {
         
@@ -35,13 +37,34 @@ class PostScreen: SGScene {
         addChild(background)
         
         let nameBlock = SKLabelNode(fontNamed: "MarkerFelt-Wide")
-        nameBlock.posByScreen(0.5, y: 0.5)
+        nameBlock.posByScreen(0.5, y: 0.7)
         nameBlock.fontColor = SKColor.whiteColor()
         nameBlock.fontSize = 64
         if (win != nil) {
-            nameBlock.text = win! ? "You Passed!" : "You Failed!"
+            nameBlock.text = win! ? "You Won!" : "You Failed!"
         }
         addChild(nameBlock)
+        
+        let gemsBlock = SKLabelNode(fontNamed: "MarkerFelt-Wide")
+        gemsBlock.posByScreen(0.5, y: 0.5)
+        gemsBlock.fontColor = SKColor.whiteColor()
+        gemsBlock.fontSize = 22
+        gemsBlock.text = "\(gems!) gems collected"
+        addChild(gemsBlock)
+        
+        let diamondsBlock = SKLabelNode(fontNamed: "MarkerFelt-Wide")
+        diamondsBlock.posByScreen(0.5, y: 0.4)
+        diamondsBlock.fontColor = SKColor.whiteColor()
+        diamondsBlock.fontSize = 22
+        diamondsBlock.text =  "\(diamonds!) diamonds collected"
+        addChild(diamondsBlock)
+        
+        let gumdropsBlock = SKLabelNode(fontNamed: "MarkerFelt-Wide")
+        gumdropsBlock.posByScreen(0.5, y: 0.3)
+        gumdropsBlock.fontColor = SKColor.whiteColor()
+        gumdropsBlock.fontSize = 22
+        gumdropsBlock.text = "\(gumdrops!) gumdrops collected"
+        addChild(gumdropsBlock)
         
     }
     

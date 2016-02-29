@@ -69,7 +69,7 @@ class LevelSelect: SGScene {
             
             let sign = SKSpriteNode(texture: SKTexture(imageNamed: "Sign_1"))
             sign.position = CGPoint(x: gridStart.x + (gridSpacing.width * CGFloat(currentX)), y: gridStart.y + (gridSpacing.height * CGFloat(currentY)))
-            sign.size = CGSize(width: 75.6, height: 78)
+            sign.size = CGSize(width: 100, height: 100)
             sign.zPosition = 20
             sign.userData = ["Index":index,"Available":(available || lastAvail)]
             sign.name = "LevelSign"
@@ -85,6 +85,7 @@ class LevelSelect: SGScene {
             
             let gems = NSUserDefaults.standardUserDefaults().integerForKey("\(index)gems") as Int
             
+            /*
             for var i = 0; i < gems; i++ {
                 let gem = SKSpriteNode(imageNamed: "gem")
                 gem.size = CGSize(width: 22, height: 22)
@@ -92,6 +93,7 @@ class LevelSelect: SGScene {
                 gem.zPosition = 22
                 sign.addChild(gem)
             }
+            */
             
             currentX++
             if currentX > Int(gridSize.width) {

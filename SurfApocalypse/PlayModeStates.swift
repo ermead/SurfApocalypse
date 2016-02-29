@@ -26,7 +26,7 @@ class GameSceneInitialState: GameSceneState {
         //Delegates
         
         gs.physicsWorld.contactDelegate = gs
-        gs.physicsWorld.gravity = CGVector(dx: 0.0, dy: -1.0)
+        gs.physicsWorld.gravity = CGVector(dx: 0, dy: -2.0)
         
         //Camera
         let myCamera = SKCameraNode()
@@ -122,6 +122,20 @@ class GameSceneInitialState: GameSceneState {
         pauseButton.name = "PauseButton"
         gs.overlayGUI.addChild(pauseButton)
         
+        let mainMenuButton = SKLabelNode(fontNamed: "MarkerFelt-Wide")
+        mainMenuButton.posByScreen(0.35, y: 0.42)
+        mainMenuButton.fontSize = 25
+        mainMenuButton.text = gs.lt("Main")
+        mainMenuButton.fontColor = SKColor.whiteColor()
+        mainMenuButton.zPosition = 150
+        mainMenuButton.name = "mainMenuButton"
+        gs.overlayGUI.addChild(mainMenuButton)
+        
+      
+        
+        
+        
+        
     }
     
     override func willExitWithNextState(nextState: GKState) {
@@ -159,6 +173,8 @@ class GameSceneWinState: GameSceneState {
         nextScene.level = gs.levelIndex
         nextScene.win = true
         nextScene.gems = gs.gemsCollected
+        nextScene.gumdrops = gs.gumdropsCollected
+        nextScene.diamonds = gs.diamondsCollected
         nextScene.scaleMode = gs.scaleMode
         gs.view?.presentScene(nextScene)
     }

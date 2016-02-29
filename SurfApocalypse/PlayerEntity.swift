@@ -86,8 +86,10 @@ class PlayerEntity: SGEntity {
                         gameScene.gemsCollected++
                     } else if gem.item == "gumdrop" {
                         print("gumdrop collected")
+                        gameScene.gumdropsCollected++
                     } else if gem.item == "diamond" {
                         print("diamond collected")
+                        gameScene.diamondsCollected++
                     }
                 }
             }

@@ -30,8 +30,8 @@ class MainMenu: SGScene {
         
         let playButton = SKLabelNode(fontNamed: "MarkerFelt-Wide")
         playButton.posByScreen(0.5, y: 0.3)
-        playButton.fontSize = 56
-        playButton.text = lt("Enter")
+        playButton.fontSize = 64
+        playButton.text = lt("Play")
         playButton.fontColor = SKColor.whiteColor()
         playButton.zPosition = 10
         playButton.name = "playGame"
@@ -48,10 +48,10 @@ class MainMenu: SGScene {
         buildButton.name = "buildGame"
         addChild(buildButton)
         
-        let title = SKSpriteNode(imageNamed: "TOTSG01")
+        let title = SKSpriteNode(imageNamed: "PrincessTitle")
         title.posByCanvas(0.5, y: 1.5)
-        title.xScale = 0.5
-        title.yScale = 0.5
+        title.xScale = 0.7
+        title.yScale = 0.7
         title.zPosition = 15
         addChild(title)
         title.runAction(SKAction.sequence([

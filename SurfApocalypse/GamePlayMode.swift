@@ -22,6 +22,8 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     
     //Level Data
     var gemsCollected = 0
+    var diamondsCollected = 0
+    var gumdropsCollected = 0
     var worldFrame = CGRect()
     
     //Layers
@@ -29,6 +31,11 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     var worldLayer: TileLayer!
     var backgroundLayer: SKNode!
     var overlayGUI: SKNode!
+    
+    //GUI
+    let gemsLabel = SKLabelNode(fontNamed: "MarkerFelt-Wide")
+    let diamondsLabel = SKLabelNode(fontNamed: "MarkerFelt-Wide")
+    let gumdropsLabel = SKLabelNode(fontNamed: "MarkerFelt-Wide")
     
     //States
     
@@ -78,6 +85,27 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         stateMachine.enterState(GameSceneInitialState.self)
+        
+        gemsLabel.posByScreen(0.35, y: 0.35)
+        gemsLabel.fontSize = 25
+        gemsLabel.text = lt("gems: \(gemsCollected)")
+        gemsLabel.fontColor = SKColor.whiteColor()
+        gemsLabel.zPosition = 150
+        overlayGUI.addChild(gemsLabel)
+        
+        gumdropsLabel.posByScreen(0.35, y: 0.30)
+        gumdropsLabel.fontSize = 25
+        gumdropsLabel.text = lt("gumdrops: \(gumdropsCollected)")
+        gumdropsLabel.fontColor = SKColor.whiteColor()
+        gumdropsLabel.zPosition = 150
+        overlayGUI.addChild(gumdropsLabel)
+        
+        diamondsLabel.posByScreen(0.35, y: 0.25)
+        diamondsLabel.fontSize = 25
+        diamondsLabel.text = lt("diamonds: \(diamondsCollected)")
+        diamondsLabel.fontColor = SKColor.whiteColor()
+        diamondsLabel.zPosition = 150
+        overlayGUI.addChild(diamondsLabel)
     }
     
     //MARK: Functions
@@ -119,6 +147,10 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
             
          //Update Game
             
+         gemsLabel.text = lt("gems: \(gemsCollected)")
+         gumdropsLabel.text = lt("gumdrops: \(gumdropsCollected)")
+         diamondsLabel.text = lt("diamonds: \(diamondsCollected)")
+            
         }
         
     }
@@ -136,6 +168,13 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
                     stateMachine.enterState(GameScenePausedState.self)
                 }
                 return 
+            }
+            
+            if node.name == "mainMenuButton" {
+                //Transition to Main Menu
+                let nextScene = MainMenu(size: self.scene!.size)
+                nextScene.scaleMode = self.scaleMode
+                self.view?.presentScene(nextScene)
             }
             
         }
