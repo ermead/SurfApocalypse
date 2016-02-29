@@ -32,7 +32,7 @@ class GameSceneInitialState: GameSceneState {
         let myCamera = SKCameraNode()
         gs.camera = myCamera
         gs.addChild(myCamera)
-        gs.camera?.setScale(0.44)
+        gs.camera?.setScale(0.64)
         
         //Layers
         
@@ -65,7 +65,9 @@ class GameSceneInitialState: GameSceneState {
         gs.addEntity(background06, toLayer:gs.backgroundLayer)
         
         let characters = ["Male", "Female"]
-        let atlas = SKTextureAtlas(named: characters[gs.characterIndex])
+        //let atlas = SKTextureAtlas(named: characters[gs.characterIndex])
+        let atlas = SKTextureAtlas(named: "Female")
+        
         
         if let playerPlaceholder = gs.worldLayer.childNodeWithName("placeholder_StartPoint") {
             let player = PlayerEntity(position: playerPlaceholder.position, size: CGSize(width: 25.4, height: 48.0), firstFrame: atlas.textureNamed("Idle__000"), atlas: atlas, scene:gs)
@@ -130,10 +132,6 @@ class GameSceneInitialState: GameSceneState {
         mainMenuButton.zPosition = 150
         mainMenuButton.name = "mainMenuButton"
         gs.overlayGUI.addChild(mainMenuButton)
-        
-      
-        
-        
         
         
     }

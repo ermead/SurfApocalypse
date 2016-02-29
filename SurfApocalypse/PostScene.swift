@@ -38,7 +38,7 @@ class PostScreen: SGScene {
         
         let nameBlock = SKLabelNode(fontNamed: "MarkerFelt-Wide")
         nameBlock.posByScreen(0.5, y: 0.7)
-        nameBlock.fontColor = SKColor.whiteColor()
+        nameBlock.fontColor = SKColor.blueColor()
         nameBlock.fontSize = 64
         if (win != nil) {
             nameBlock.text = win! ? "You Won!" : "You Failed!"
