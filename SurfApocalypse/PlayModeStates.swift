@@ -88,17 +88,17 @@ class GameSceneInitialState: GameSceneState {
         let tileAtlas = SKTextureAtlas(named: "Tiles")
         
         gs.worldLayer.enumerateChildNodesWithName("placeholder_Gem") { (node, stop) -> Void in
-            let gem = GemEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("gem"))
+            let gem = GemEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("gem"), item: "gem")
             gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
             self.gs.addEntity(gem, toLayer: self.gs.worldLayer)
         }
         gs.worldLayer.enumerateChildNodesWithName("placeholder_Gem_diamond") { (node, stop) -> Void in
-            let gem = GemEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("diamond"))
+            let gem = GemEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("diamond"), item: "diamond")
             gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
             self.gs.addEntity(gem, toLayer: self.gs.worldLayer)
         }
         gs.worldLayer.enumerateChildNodesWithName("placeholder_Gem_gumdrop") { (node, stop) -> Void in
-            let gem = GemEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("gumdrop"))
+            let gem = GemEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("gumdrop"), item: "gumdrop")
             gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
             self.gs.addEntity(gem, toLayer: self.gs.worldLayer)
         }

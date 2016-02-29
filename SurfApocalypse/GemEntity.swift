@@ -16,8 +16,9 @@ class GemEntity: SGEntity {
     
     var spriteComponent: SpriteComponent!
     var physicsComponent: PhysicsComponent!
+    var item: String!
     
-    init(position: CGPoint, size: CGSize, texture:SKTexture ) {
+    init(position: CGPoint, size: CGSize, texture:SKTexture, item: String) {
         super.init()
         
         //Initialize components
@@ -33,6 +34,7 @@ class GemEntity: SGEntity {
         spriteComponent.node.physicsBody = physicsComponent.physicsBody
         spriteComponent.node.name = "gemNode"
         name = "gemEntity"
+        self.item = item
     }
     
     

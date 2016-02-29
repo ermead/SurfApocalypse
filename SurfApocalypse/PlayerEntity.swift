@@ -80,8 +80,16 @@ class PlayerEntity: SGEntity {
             if let spriteComponent = entity.componentForClass(SpriteComponent.self) {
                 spriteComponent.node.removeFromParent()
                 gameScene.runAction(gameScene.sndCollectGood)
-             
-                gameScene.gemsCollected++
+                if let gem = entity as? GemEntity{
+                    
+                    if gem.item == "gem" {
+                        gameScene.gemsCollected++
+                    } else if gem.item == "gumdrop" {
+                        print("gumdrop collected")
+                    } else if gem.item == "diamond" {
+                        print("diamond collected")
+                    }
+                }
             }
             
         }
