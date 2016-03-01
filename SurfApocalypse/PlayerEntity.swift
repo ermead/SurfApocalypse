@@ -51,6 +51,8 @@ class PlayerEntity: SGEntity {
         if !gameScene.worldFrame.contains(spriteComponent.node.position) {
             playerDied()
         }
+        
+    
     }
     
     func loadAnimations(textureAtlas:SKTextureAtlas) -> [AnimationState: Animation] {
@@ -104,7 +106,8 @@ class PlayerEntity: SGEntity {
                 
                 print("treasure box opened, spawn collectible here")
                 
-                let gem = GemEntity(position: CGPoint(x: spriteComponent.node.position.x, y:spriteComponent.node.position.y + 60), size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("diamond"), item: "diamond")
+                let gem = GemEntity(position: CGPoint(x: spriteComponent.node.position.x + 60, y:spriteComponent.node.position.y + 60), size: CGSize(width: 32, height: 32), texture:
+                    tileAtlas.textureNamed("diamond"), item: "diamond")
                 gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
                 self.gameScene.addEntity(gem, toLayer: self.gameScene.worldLayer)
             }
@@ -119,6 +122,27 @@ class PlayerEntity: SGEntity {
     func playerDied() {
         gameScene.stateMachine.enterState(GameSceneLoseState.self)
     }
-
+    
+    func throwObject(){
+        if let spriteComponent = self.spriteComponent {
+        let object = SKSpriteNode()
+        object.position = spriteComponent.node.position
+        object.size = CGSize(width: 32, height: 32)
+        object.zPosition = 150
+        object.name = "projectile"
+        let tileAtlas = SKTextureAtlas(named: "Tiles")
+        object.texture = tileAtlas.textureNamed("diamond")
+        gameScene.projectileLayer.addChild(object)
+        let throwAction = SKAction.moveToX(object.position.x + 200, duration: 0.5)
+        let removeAction = SKAction.removeFromParent()
+        let actionSeq = SKAction.sequence([throwAction, removeAction])
+        object.runAction(actionSeq, completion: { () -> Void in
+            //self.scrollerComponent.isThrowing = false
+            
+        })
+            
+        }
+    }
+    
    
 }

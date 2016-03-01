@@ -31,6 +31,7 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     var worldLayer: TileLayer!
     var backgroundLayer: SKNode!
     var overlayGUI: SKNode!
+    var projectileLayer: SKNode!
     
     //GUI
     let gemsLabel = SKLabelNode(fontNamed: "MarkerFelt-Wide")
@@ -80,6 +81,7 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     
     let sndCollectGood = SKAction.playSoundFileNamed("collect_good.wav", waitForCompletion: false)
     let sndJump = SKAction.playSoundFileNamed("jump.wav", waitForCompletion: false)
+    let sndThrow = SKAction.playSoundFileNamed("throw.wav", waitForCompletion: false)
     
     //MARK: Initializer
     
@@ -127,6 +129,17 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         sideScrollSystem.addComponentWithEntity(entity)
         
     }
+    
+    /*
+    func throwProjectile(entity: SGEntity, toLayer layer: SKNode){
+        
+        let node = (entity.componentForClass(SpriteComponent.self)?.node)!
+        projectileLayer.addChild(node)
+       
+        print("throwing projectile")
+        
+    }
+    */
     
     //MARK: Life Cycle
     
@@ -179,18 +192,37 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
             
         }
         
-        control.jumpPressed = true
+        //control.jumpPressed = true
+        
+        
+        ///THROW & JUMP:
+        if let player = worldLayer.childNodeWithName("playerNode") as? EntityNode {
+        if (location.x > player.position.x){
+            // on right side
+            control.jumpPressed = true
+            print("jump")
+        } else {
+            // on left side
+            control.throwPressed = true
+            print("throw")
+            }
+        }
+        ///
+      
+        
         
     }
     
     override func screenInteractionMoved(location: CGPoint) {
         
         control.jumpPressed = false
+        control.throwPressed = false
 
     }
     
     override func screenInteractionEnded(location: CGPoint) {
         control.jumpPressed = false
+        control.throwPressed = false
     }
     
     override func buttonEvent(event: String, velocity: Float, pushedOn: Bool) {

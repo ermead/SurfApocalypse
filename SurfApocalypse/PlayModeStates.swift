@@ -40,6 +40,8 @@ class GameSceneInitialState: GameSceneState {
         gs.addChild(gs.worldLayer)
         gs.backgroundLayer = SKNode()
         gs.overlayGUI = SKNode()
+        gs.projectileLayer = SKNode()
+        gs.addChild(gs.projectileLayer)
         myCamera.addChild(gs.backgroundLayer)
         myCamera.addChild(gs.overlayGUI)
         

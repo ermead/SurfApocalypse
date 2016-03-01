@@ -72,9 +72,11 @@ class SideScrollComponent: GKComponent {
             jumpTime = 0.05
             animationComponent.requestedAnimationState = .Jump
         }
+        
         if (jumpTime > 0.0) {
             jumpTime = jumpTime - CGFloat(seconds)
             spriteComponent.node.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: (seconds * 120.0)), atPoint: spriteComponent.node.position)
+            
         }
         
         if spriteComponent.node.physicsBody?.allContactedBodies().count > 0 {
@@ -88,7 +90,35 @@ class SideScrollComponent: GKComponent {
         }
         
         
+        //THROWING
+        if controlInput.throwPressed && isThrowing == false {
+            
+            if let playerEnt = entity as? PlayerEntity {
+            
+            //playerEnt.gameScene.runAction(playerEnt.gameScene.sndThrow)
+            
+                if playerEnt.gameScene.projectileLayer.children.count < 4 {
+                    
+                    isThrowing = true
+                    
+                    animationComponent.requestedAnimationState = AnimationState.IdleThrow
+                    
+                    playerEnt.throwObject()
+                    
+                    }
+                
+                let actionWait = SKAction.waitForDuration(0.2)
+                playerEnt.gameScene.runAction(actionWait, completion: { () -> Void in
+                    
+                    self.isThrowing = false
+                })
+             
+            }
+            
+        }
+        
     }
+ 
     
 }
 

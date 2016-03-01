@@ -178,6 +178,9 @@
 		D7E1D8A71C85485400BA518A /* TreasureBoxEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1D8A61C85485400BA518A /* TreasureBoxEntity.swift */; };
 		D7E1D8A81C85485400BA518A /* TreasureBoxEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1D8A61C85485400BA518A /* TreasureBoxEntity.swift */; };
 		D7E1D8A91C85485400BA518A /* TreasureBoxEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1D8A61C85485400BA518A /* TreasureBoxEntity.swift */; };
+		D7E1D8F81C86325600BA518A /* ThrownEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1D8F71C86325600BA518A /* ThrownEntity.swift */; };
+		D7E1D8F91C86325600BA518A /* ThrownEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1D8F71C86325600BA518A /* ThrownEntity.swift */; };
+		D7E1D8FA1C86325600BA518A /* ThrownEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1D8F71C86325600BA518A /* ThrownEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -254,6 +257,7 @@
 		D7CD64581C80F0FB00E8CAF9 /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		D7CD645C1C80F70B00E8CAF9 /* SideScrollMovement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideScrollMovement.swift; sourceTree = "<group>"; };
 		D7E1D8A61C85485400BA518A /* TreasureBoxEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreasureBoxEntity.swift; sourceTree = "<group>"; };
+		D7E1D8F71C86325600BA518A /* ThrownEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrownEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,6 +382,7 @@
 				D7CBFD821C8152F900800CCB /* FinishEntity.swift */,
 				D7CBFD921C81621800800CCB /* KillZoneEntity.swift */,
 				D7E1D8A61C85485400BA518A /* TreasureBoxEntity.swift */,
+				D7E1D8F71C86325600BA518A /* ThrownEntity.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -695,6 +700,7 @@
 				D7CD631F1C7BFF2900E8CAF9 /* IOS_Responder.swift in Sources */,
 				D7CD635E1C7C12EE00E8CAF9 /* MainMenu.swift in Sources */,
 				D7CBFD8B1C815BED00800CCB /* LevelSelect.swift in Sources */,
+				D7E1D8F81C86325600BA518A /* ThrownEntity.swift in Sources */,
 				D7CBFD7B1C8151A500800CCB /* SGEntity.swift in Sources */,
 				D7CD631A1C7BFD4F00E8CAF9 /* SGScene.swift in Sources */,
 				D7CBFD8F1C81617400800CCB /* PostScene.swift in Sources */,
@@ -758,6 +764,7 @@
 				D7CD63981C7CEA7F00E8CAF9 /* GamePlayMode.swift in Sources */,
 				D7CD638B1C7C200F00E8CAF9 /* SKTAudio.swift in Sources */,
 				D7CD638E1C7C200F00E8CAF9 /* SKTEffects.swift in Sources */,
+				D7E1D8F91C86325600BA518A /* ThrownEntity.swift in Sources */,
 				D7CD631B1C7BFD6D00E8CAF9 /* SGScene.swift in Sources */,
 				D7CD63791C7C200F00E8CAF9 /* CGVector+Extensions.swift in Sources */,
 				D7CD63631C7C151800E8CAF9 /* SG_Resolution.swift in Sources */,
@@ -807,6 +814,7 @@
 				D7CD63991C7CEA7F00E8CAF9 /* GamePlayMode.swift in Sources */,
 				D7CD638C1C7C200F00E8CAF9 /* SKTAudio.swift in Sources */,
 				D7CD638F1C7C200F00E8CAF9 /* SKTEffects.swift in Sources */,
+				D7E1D8FA1C86325600BA518A /* ThrownEntity.swift in Sources */,
 				D7CD631C1C7BFD6D00E8CAF9 /* SGScene.swift in Sources */,
 				D7CD637A1C7C200F00E8CAF9 /* CGVector+Extensions.swift in Sources */,
 				D7CD63641C7C151900E8CAF9 /* SG_Resolution.swift in Sources */,
