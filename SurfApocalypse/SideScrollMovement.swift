@@ -74,7 +74,7 @@ class SideScrollComponent: GKComponent {
         }
         if (jumpTime > 0.0) {
             jumpTime = jumpTime - CGFloat(seconds)
-            spriteComponent.node.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: (seconds * 90.0)), atPoint: spriteComponent.node.position)
+            spriteComponent.node.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: (seconds * 120.0)), atPoint: spriteComponent.node.position)
         }
         
         if spriteComponent.node.physicsBody?.allContactedBodies().count > 0 {
