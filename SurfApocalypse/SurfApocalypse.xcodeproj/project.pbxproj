@@ -175,6 +175,9 @@
 		D7CD645D1C80F70B00E8CAF9 /* SideScrollMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD645C1C80F70B00E8CAF9 /* SideScrollMovement.swift */; };
 		D7CD645E1C80F70B00E8CAF9 /* SideScrollMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD645C1C80F70B00E8CAF9 /* SideScrollMovement.swift */; };
 		D7CD645F1C80F70B00E8CAF9 /* SideScrollMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD645C1C80F70B00E8CAF9 /* SideScrollMovement.swift */; };
+		D7E1D8A71C85485400BA518A /* TreasureBoxEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1D8A61C85485400BA518A /* TreasureBoxEntity.swift */; };
+		D7E1D8A81C85485400BA518A /* TreasureBoxEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1D8A61C85485400BA518A /* TreasureBoxEntity.swift */; };
+		D7E1D8A91C85485400BA518A /* TreasureBoxEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1D8A61C85485400BA518A /* TreasureBoxEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -250,6 +253,7 @@
 		D7CD63BF1C7D040000E8CAF9 /* AnimationComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationComponent.swift; sourceTree = "<group>"; };
 		D7CD64581C80F0FB00E8CAF9 /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		D7CD645C1C80F70B00E8CAF9 /* SideScrollMovement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideScrollMovement.swift; sourceTree = "<group>"; };
+		D7E1D8A61C85485400BA518A /* TreasureBoxEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreasureBoxEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +377,7 @@
 				D7CBFD7E1C81529200800CCB /* GemEntity.swift */,
 				D7CBFD821C8152F900800CCB /* FinishEntity.swift */,
 				D7CBFD921C81621800800CCB /* KillZoneEntity.swift */,
+				D7E1D8A61C85485400BA518A /* TreasureBoxEntity.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -697,6 +702,7 @@
 				D7CD638A1C7C200F00E8CAF9 /* SKTAudio.swift in Sources */,
 				D7CD63C01C7D040000E8CAF9 /* AnimationComponent.swift in Sources */,
 				D70C42731C7A6C70006E9B76 /* GameScene.swift in Sources */,
+				D7E1D8A71C85485400BA518A /* TreasureBoxEntity.swift in Sources */,
 				D7CD63901C7C200F00E8CAF9 /* SKTTimingFunctions.swift in Sources */,
 				D7CD63A81C7CF30E00E8CAF9 /* TileLayer.swift in Sources */,
 				D7CD63261C7C043700E8CAF9 /* SG_Extension.swift in Sources */,
@@ -772,6 +778,7 @@
 				D7CD63A01C7CEFD400E8CAF9 /* TileMapBuilder.swift in Sources */,
 				D7CD63B11C7CFE0600E8CAF9 /* BackgroundEntity.swift in Sources */,
 				D7CD63941C7C200F00E8CAF9 /* Vector3.swift in Sources */,
+				D7E1D8A81C85485400BA518A /* TreasureBoxEntity.swift in Sources */,
 				D7CD639C1C7CEC8300E8CAF9 /* PlayModeStates.swift in Sources */,
 				D7CD63611C7C151400E8CAF9 /* SG_Extension.swift in Sources */,
 				D7CBFD841C8152F900800CCB /* FinishEntity.swift in Sources */,
@@ -820,6 +827,7 @@
 				D7CD63A11C7CEFD400E8CAF9 /* TileMapBuilder.swift in Sources */,
 				D7CD63B21C7CFE0600E8CAF9 /* BackgroundEntity.swift in Sources */,
 				D7CD63951C7C200F00E8CAF9 /* Vector3.swift in Sources */,
+				D7E1D8A91C85485400BA518A /* TreasureBoxEntity.swift in Sources */,
 				D7CD639D1C7CEC8300E8CAF9 /* PlayModeStates.swift in Sources */,
 				D7CD63621C7C151500E8CAF9 /* SG_Extension.swift in Sources */,
 				D7CBFD851C8152F900800CCB /* FinishEntity.swift in Sources */,

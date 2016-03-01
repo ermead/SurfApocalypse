@@ -96,6 +96,20 @@ class PlayerEntity: SGEntity {
             
         }
         
+        if entity.name == "treasureBoxEntity" {
+            if let spriteComponent = entity.componentForClass(SpriteComponent.self) {
+                let tileAtlas = SKTextureAtlas(named: "Tiles")
+                spriteComponent.node.texture = tileAtlas.textureNamed("t_openedBox")
+                gameScene.runAction(gameScene.sndCollectGood)
+                
+                print("treasure box opened, spawn collectible here")
+                
+                let gem = GemEntity(position: CGPoint(x: spriteComponent.node.position.x, y:spriteComponent.node.position.y + 60), size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("diamond"), item: "diamond")
+                gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
+                self.gameScene.addEntity(gem, toLayer: self.gameScene.worldLayer)
+            }
+        }
+        
         if entity.name == "killZoneEntity" {
             playerDied()
         }

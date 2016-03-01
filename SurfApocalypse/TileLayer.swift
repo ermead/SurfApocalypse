@@ -417,6 +417,13 @@ class TileLayer: SKNode, tileMapDelegate {
             node.zPosition = GameSettings.GameParams.zValues.zWorld
             addChild(node)
             break
+        
+        case .tileTreasureBox:
+            let node = SKNode()
+            node.position = location
+            node.name = "placeholder_treasureBox"
+            addChild(node)
+            break
          
         default:
             break

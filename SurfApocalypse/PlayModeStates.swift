@@ -103,6 +103,14 @@ class GameSceneInitialState: GameSceneState {
             let gem = GemEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("gumdrop"), item: "gumdrop")
             gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
             self.gs.addEntity(gem, toLayer: self.gs.worldLayer)
+            
+        }
+        
+        gs.worldLayer.enumerateChildNodesWithName("placeholder_treasureBox") { (node, stop) -> Void in
+            let treasureBox = TreasureBoxEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("t_treasureBox"), item: "treasureBox")
+            treasureBox.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
+            self.gs.addEntity(treasureBox, toLayer: self.gs.worldLayer)
+            
         }
         
         
