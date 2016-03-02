@@ -273,8 +273,9 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
                     print("throwable collided with box!")
                     let tb = TreasureBoxEntity(position: treasurebox.position, size: CGSize(width: 32, height: 32), texture: SKTextureAtlas(named: "Tiles").textureNamed("t_openedBox"), item: "opened box")
                     treasurebox.removeFromParent()
+                    tb.spriteComponent.node.zPosition = 150
                     self.addEntity(tb, toLayer: worldLayer)
-                    tb.treasureBoxHitAndSpawn(self)
+                    //tb.treasureBoxHitAndSpawn(self)
                 }
             }
         }
@@ -287,9 +288,11 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
                     print("throwable collided with box!")
                    
                     let tb = TreasureBoxEntity(position: treasurebox.position, size: CGSize(width: 32, height: 32), texture: SKTextureAtlas(named: "Tiles").textureNamed("t_openedBox"), item: "opened box")
+                    
                     treasurebox.removeFromParent()
+                    tb.spriteComponent.node.zPosition = 150
                     self.addEntity(tb, toLayer: worldLayer)
-                    tb.treasureBoxHitAndSpawn(self)
+                    //tb.treasureBoxHitAndSpawn(self)
                     
                 }
             }
