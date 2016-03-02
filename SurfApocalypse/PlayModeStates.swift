@@ -143,7 +143,6 @@ class GameSceneInitialState: GameSceneState {
         mainMenuButton.name = "mainMenuButton"
         gs.overlayGUI.addChild(mainMenuButton)
         
-        
     }
     
     override func willExitWithNextState(nextState: GKState) {

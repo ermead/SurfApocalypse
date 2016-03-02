@@ -19,7 +19,13 @@ class LevelSelect: SGScene {
     
     let levelLayer = SKNode()
     
+    var buildMode: Bool = false
+    
     override func didMoveToView(view: SKView) {
+        
+        if buildMode {
+            print("in build mode...")
+        }
         
         let background = SKSpriteNode(imageNamed: "BG")
         background.posByCanvas(0.5, y: 0.5)
@@ -39,7 +45,9 @@ class LevelSelect: SGScene {
         
         
         //Show levels
+      
         showLevelsFrom(0)
+        
         
     }
     
@@ -117,11 +125,18 @@ class LevelSelect: SGScene {
                     if nodeName == "LevelSign" {
                         if theNode.userData!["Available"] as! Bool == true {
                             self.runAction(sndButtonClick)
-                            let nextScene = GamePlayMode(size: self.scene!.size)
-                            nextScene.characterIndex = self.characterIndex
-                            nextScene.levelIndex = (theNode.userData!["Index"] as? Int)!
-                            nextScene.scaleMode = self.scaleMode
-                            self.view?.presentScene(nextScene)
+                            if buildMode == false {
+                                let nextScene = GamePlayMode(size: self.scene!.size)
+                                nextScene.characterIndex = self.characterIndex
+                                nextScene.levelIndex = (theNode.userData!["Index"] as? Int)!
+                                nextScene.scaleMode = self.scaleMode
+                                self.view?.presentScene(nextScene)
+                            } else {
+                                let nextScene = GameBuildMode(size: self.scene!.size)
+                                nextScene.levelIndex = (theNode.userData!["Index"] as? Int)!
+                                nextScene.scaleMode = self.scaleMode
+                                self.view?.presentScene(nextScene)
+                            }
                         }
                     }
             }
@@ -130,12 +145,21 @@ class LevelSelect: SGScene {
     
     #if !os(OSX)
     override func pressesBegan(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
+    
         self.runAction(sndButtonClick)
-        let nextScene = GamePlayMode(size: self.scene!.size)
-        nextScene.characterIndex = self.characterIndex
-        nextScene.levelIndex = 0
-        nextScene.scaleMode = self.scaleMode
-        self.view?.presentScene(nextScene)
+   
+        if buildMode == false {
+            let nextScene = GamePlayMode(size: self.scene!.size)
+            nextScene.characterIndex = self.characterIndex
+            nextScene.levelIndex = (theNode.userData!["Index"] as? Int)!
+            nextScene.scaleMode = self.scaleMode
+            self.view?.presentScene(nextScene)
+        } else {
+            let nextScene = GameBuildMode(size: self.scene!.size)
+            nextScene.levelIndex = (theNode.userData!["Index"] as? Int)!
+            nextScene.scaleMode = self.scaleMode
+            self.view?.presentScene(nextScene)
+        }
     }
     #endif
 }

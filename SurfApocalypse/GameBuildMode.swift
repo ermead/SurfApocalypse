@@ -18,6 +18,8 @@ enum toolSelection {
 @available(OSX 10.11, *)
 class GameBuildMode: SGScene {
     
+    var levelIndex: Int = 0
+    
     //Layers
     var worldLayer:TileLayer!
     var overlayLayer = SKNode()
@@ -45,7 +47,7 @@ class GameBuildMode: SGScene {
         addChild(myCamera)
         
         //Setup Layers
-        worldLayer = TileLayer(levelIndex: 0, typeIndex: .setBuilder)
+        worldLayer = TileLayer(levelIndex: levelIndex, typeIndex: .setMain)
         addChild(worldLayer)
         myCamera.addChild(overlayLayer)
         updateTileMap()
@@ -113,6 +115,16 @@ class GameBuildMode: SGScene {
         background.zPosition = -1
         overlayLayer.addChild(background)
         
+        
+        let mainMenuButton = SKLabelNode(fontNamed: "MarkerFelt-Wide")
+        mainMenuButton.posByScreen(0.0, y: 0.42)
+        mainMenuButton.fontSize = 25
+        mainMenuButton.text = lt("Exit Level\(levelIndex + 1) to Main")
+        mainMenuButton.fontColor = SKColor.whiteColor()
+        mainMenuButton.zPosition = 150
+        mainMenuButton.name = "mainMenuButton"
+        overlayLayer.addChild(mainMenuButton)
+        
         tilePanel.posByScreen(0.45, y: 0.45)
         tilePanel.selectIndex(0)
         overlayLayer.addChild(tilePanel)
@@ -167,6 +179,15 @@ class GameBuildMode: SGScene {
                 worldLayer.levelGenerator.printLayer()
                 return
             }
+            
+            if node.name == "mainMenuButton" {
+                //Transition to Main Menu
+                let nextScene = MainMenu(size: self.scene!.size)
+                nextScene.scaleMode = self.scaleMode
+                self.view?.presentScene(nextScene)
+            }
+            
+            
         }
         if let node = nodeAtPoint(location) as? SKSpriteNode {
             if ((node.name?.hasPrefix("T_")) != nil) {
