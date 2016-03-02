@@ -126,16 +126,21 @@ class PlayerEntity: SGEntity {
     func throwObject(){
         if let spriteComponent = self.spriteComponent {
         let object = SKSpriteNode()
-        object.position = spriteComponent.node.position
+        var physicsBody = SKPhysicsBody()
+        physicsBody.dynamic = true
+        object.physicsBody = physicsBody
+        object.position = CGPoint(x: spriteComponent.node.position.x + 10, y:  spriteComponent.node.position.y + 20)
         object.size = CGSize(width: 32, height: 32)
-        object.zPosition = 150
+        object.zPosition = GameSettings.GameParams.zValues.zWorld
         object.name = "projectile"
         let tileAtlas = SKTextureAtlas(named: "Tiles")
         object.texture = tileAtlas.textureNamed("diamond")
         gameScene.projectileLayer.addChild(object)
-        let throwAction = SKAction.moveToX(object.position.x + 200, duration: 0.5)
+        //let throwAction = SKAction.moveToX(object.position.x + 200, duration: 0.5)
+        let throwAction = SKAction.applyImpulse(CGVectorMake(400.0, 200.0), atPoint: object.position, duration: 0.35)
+        let waitAction = SKAction.waitForDuration(1)
         let removeAction = SKAction.removeFromParent()
-        let actionSeq = SKAction.sequence([throwAction, removeAction])
+        let actionSeq = SKAction.sequence([throwAction, waitAction, removeAction])
         object.runAction(actionSeq, completion: { () -> Void in
             //self.scrollerComponent.isThrowing = false
             

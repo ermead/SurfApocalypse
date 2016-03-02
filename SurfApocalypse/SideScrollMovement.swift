@@ -40,6 +40,8 @@ class SideScrollComponent: GKComponent {
     var jumpTime:CGFloat = 0.0
     var isThrowing = false
 
+    var groundY:CGFloat = 0.0
+    var previousY:CGFloat = 0.0
     
     var spriteComponent: SpriteComponent {
         guard let spriteComponent = entity?.componentForClass(SpriteComponent.self) else { fatalError("SpriteComponent Missing") }
@@ -76,6 +78,9 @@ class SideScrollComponent: GKComponent {
         if (jumpTime > 0.0) {
             jumpTime = jumpTime - CGFloat(seconds)
             spriteComponent.node.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: (seconds * 120.0)), atPoint: spriteComponent.node.position)
+            if ((spriteComponent.node.position.y - groundY) > 57) || ((spriteComponent.node.position.y <= previousY) && ((spriteComponent.node.position.y - groundY) > 2)) {
+                isJumping = false
+            }
             
         }
         

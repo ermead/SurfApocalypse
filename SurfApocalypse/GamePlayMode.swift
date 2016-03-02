@@ -18,6 +18,8 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     var characterIndex = 0
     var levelIndex = 0
     
+    var canThrow: Bool = false
+    
     //Generators
     
     //Level Data
@@ -130,17 +132,7 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         
     }
     
-    /*
-    func throwProjectile(entity: SGEntity, toLayer layer: SKNode){
-        
-        let node = (entity.componentForClass(SpriteComponent.self)?.node)!
-        projectileLayer.addChild(node)
-       
-        print("throwing projectile")
-        
-    }
-    */
-    
+   
     //MARK: Life Cycle
     
     override func update(currentTime: NSTimeInterval) {
@@ -192,9 +184,9 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
             
         }
         
-        //control.jumpPressed = true
         
         
+        if canThrow == true {
         ///THROW & JUMP:
         if let player = worldLayer.childNodeWithName("playerNode") as? EntityNode {
         if (location.x > player.position.x){
@@ -208,7 +200,10 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
             }
         }
         ///
-      
+        } else {
+            //Only Jump
+          control.jumpPressed = true
+        }
         
         
     }

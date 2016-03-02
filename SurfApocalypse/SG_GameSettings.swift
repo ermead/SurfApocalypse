@@ -58,7 +58,7 @@ struct GameSettings {
         
         static let ALL_Identifier         : String = "com.mixedmediaarts"
         
-        static let OSX_Start_FullScreen   : Bool = true
+        static let OSX_Start_FullScreen   : Bool = false
         static let OSX_DefaultResolution  : Int  = 0
         
         static let OSX_Resolutions        : [(CGFloat, CGFloat)] = [(1024, 768), (1280, 800)]
