@@ -71,7 +71,7 @@ class PlayerEntity: SGEntity {
         return animations
     }
     
-    
+  
     override func contactWith(entity:SGEntity, scene: GamePlayMode) {
         
         if entity.name == "finishEntity" {
@@ -104,19 +104,7 @@ class PlayerEntity: SGEntity {
                 box.treasureBoxHitAndSpawn(self.gameScene)
             }
             
-//            if let spriteComponent = entity.componentForClass(SpriteComponent.self) {
-//                let tileAtlas = SKTextureAtlas(named: "Tiles")
-//                spriteComponent.node.texture = tileAtlas.textureNamed("t_openedBox")
-//                gameScene.runAction(gameScene.sndCollectGood)
-//                
-//                print("treasure box opened, spawn collectible here")
-//                
-//                let gem = GemEntity(position: CGPoint(x: spriteComponent.node.position.x + 60, y:spriteComponent.node.position.y + 60), size: CGSize(width: 32, height: 32), texture:
-//                    tileAtlas.textureNamed("diamond"), item: "diamond")
-//                gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
-//                self.gameScene.addEntity(gem, toLayer: self.gameScene.worldLayer)
-//            }
-        }
+       }
         
         if entity.name == "killZoneEntity" {
             playerDied()
@@ -144,7 +132,6 @@ class PlayerEntity: SGEntity {
         object.texture = tileAtlas.textureNamed("diamond")
         gameScene.projectileLayer.addChild(object)
         let throwAction = SKAction.moveToX(object.position.x + 200, duration: 0.5)
-//        let throwAction = SKAction.applyImpulse(CGVectorMake(400.0, 200.0), atPoint: object.position, duration: 0.35)
         let waitAction = SKAction.waitForDuration(1)
         let removeAction = SKAction.removeFromParent()
         let actionSeq = SKAction.sequence([throwAction, waitAction, removeAction])
@@ -155,6 +142,5 @@ class PlayerEntity: SGEntity {
             
         }
     }
-    
-   
+
 }

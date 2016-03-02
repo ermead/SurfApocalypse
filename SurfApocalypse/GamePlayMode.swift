@@ -265,13 +265,35 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     
     func didBeginContact(contact: SKPhysicsContact) {
         
-        if let box = contact.bodyA.node as? EntityNode,
-        let boxEnt = box.entity as? SGEntity,
-        let thrown = contact.bodyB.node as? SKSpriteNode
-        {
-            contactBegan2(thrown, nodeB: boxEnt)
+        if let sg_entity = contact.bodyA.node {
+            
+            if sg_entity.name == "treasureBoxNode" {
+                let treasurebox = sg_entity
+                if contact.bodyB.node?.name == "projectile" {
+                    print("throwable collided with box!")
+                    let tb = TreasureBoxEntity(position: treasurebox.position, size: CGSize(width: 32, height: 32), texture: SKTextureAtlas(named: "Tiles").textureNamed("t_openedBox"), item: "opened box")
+                    treasurebox.removeFromParent()
+                    self.addEntity(tb, toLayer: worldLayer)
+                    tb.treasureBoxHitAndSpawn(self)
+                }
+            }
         }
         
+        if let sg_entity = contact.bodyB.node {
+            
+            if sg_entity.name == "treasureBoxNode" {
+                let treasurebox = sg_entity
+                if contact.bodyA.node?.name == "projectile" {
+                    print("throwable collided with box!")
+                   
+                    let tb = TreasureBoxEntity(position: treasurebox.position, size: CGSize(width: 32, height: 32), texture: SKTextureAtlas(named: "Tiles").textureNamed("t_openedBox"), item: "opened box")
+                    treasurebox.removeFromParent()
+                    self.addEntity(tb, toLayer: worldLayer)
+                    tb.treasureBoxHitAndSpawn(self)
+                    
+                }
+            }
+        }
         
         if let bodyA = contact.bodyA.node as? EntityNode,
             let bodyAent = bodyA.entity as? SGEntity,
@@ -284,9 +306,8 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         
     }
     
-    func contactBegan2(nodeA: SKSpriteNode, nodeB: SGEntity){
-        nodeB.contactWith2(nodeA, scene: self)
-    }
+  
+  
     
     func contactBegan(nodeA:SGEntity, nodeB:SGEntity) {
         nodeA.contactWith(nodeB, scene: self)

@@ -57,11 +57,6 @@ class TreasureBoxEntity: SGEntity {
         print("player hit treasure box")
         self.treasureBoxHitAndSpawn(scene)
     }
-    
-    override func contactWith2(node: SKSpriteNode, scene: GamePlayMode) {
-        print("throwable hit treasure box")
-        self.treasureBoxHitAndSpawn(scene)
-    }
-    
+  
     
 }

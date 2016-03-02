@@ -17,8 +17,5 @@ class SGEntity: GKEntity {
         //Overridden by subclass
     }
     
-    func contactWith2(node: SKSpriteNode, scene: GamePlayMode) {
-        //Overridden by subclass
-    }
-    
+
 }
