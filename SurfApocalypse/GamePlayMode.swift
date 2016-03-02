@@ -18,7 +18,7 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     var characterIndex = 0
     var levelIndex = 0
     
-    var canThrow: Bool = false
+    var canThrow: Bool = true
     
     //Generators
     
@@ -265,6 +265,14 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     
     func didBeginContact(contact: SKPhysicsContact) {
         
+        if let box = contact.bodyA.node as? EntityNode,
+        let boxEnt = box.entity as? SGEntity,
+        let thrown = contact.bodyB.node as? SKSpriteNode
+        {
+            contactBegan2(thrown, nodeB: boxEnt)
+        }
+        
+        
         if let bodyA = contact.bodyA.node as? EntityNode,
             let bodyAent = bodyA.entity as? SGEntity,
             let bodyB = contact.bodyB.node as? EntityNode,
@@ -276,8 +284,12 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         
     }
     
+    func contactBegan2(nodeA: SKSpriteNode, nodeB: SGEntity){
+        nodeB.contactWith2(nodeA, scene: self)
+    }
+    
     func contactBegan(nodeA:SGEntity, nodeB:SGEntity) {
-        nodeA.contactWith(nodeB)
+        nodeA.contactWith(nodeB, scene: self)
     }
     
     //MARK: Camera Settings:

@@ -13,7 +13,11 @@ class SGEntity: GKEntity {
     
     var name = ""
     
-    func contactWith(entity:SGEntity) {
+    func contactWith(entity:SGEntity, scene: GamePlayMode) {
+        //Overridden by subclass
+    }
+    
+    func contactWith2(node: SKSpriteNode, scene: GamePlayMode) {
         //Overridden by subclass
     }
     

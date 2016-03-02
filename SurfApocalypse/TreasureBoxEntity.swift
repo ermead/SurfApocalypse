@@ -25,9 +25,9 @@ class TreasureBoxEntity: SGEntity {
         spriteComponent = SpriteComponent(entity: self, texture: texture, size: size, position:position)
         addComponent(spriteComponent)
         physicsComponent = PhysicsComponent(entity: self, bodySize: CGSize(width: spriteComponent.node.size.width * 0.8, height: spriteComponent.node.size.height * 0.8), bodyShape: .square, rotation: false)
-        physicsComponent.setCategoryBitmask(ColliderType.Collectable.rawValue, dynamic: false)
+        physicsComponent.setCategoryBitmask(ColliderType.Collectable.rawValue | ColliderType.Destroyable.rawValue, dynamic: false)
         physicsComponent.setPhysicsCollisions(ColliderType.None.rawValue)
-        physicsComponent.setPhysicsContacts(ColliderType.Player.rawValue)
+        physicsComponent.setPhysicsContacts(ColliderType.Player.rawValue | ColliderType.Projectile.rawValue)
         addComponent(physicsComponent)
         
         //Final setup of components
@@ -35,6 +35,32 @@ class TreasureBoxEntity: SGEntity {
         spriteComponent.node.name = "treasureBoxNode"
         name = "treasureBoxEntity"
         self.item = item
+    }
+    
+    func treasureBoxHitAndSpawn(scene: GamePlayMode){
+        let gameScene = scene
+        if let spriteComponent = self.componentForClass(SpriteComponent.self) {
+            let tileAtlas = SKTextureAtlas(named: "Tiles")
+            spriteComponent.node.texture = tileAtlas.textureNamed("t_openedBox")
+            gameScene.runAction(gameScene.sndCollectGood)
+            
+            print("treasure box opened, spawn collectible here")
+            
+            let gem = GemEntity(position: CGPoint(x: spriteComponent.node.position.x + 60, y:spriteComponent.node.position.y + 60), size: CGSize(width: 32, height: 32), texture:
+                tileAtlas.textureNamed("diamond"), item: "diamond")
+            gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
+            gameScene.addEntity(gem, toLayer: gameScene.worldLayer)
+        }
+    }
+    
+    override func contactWith(entity: SGEntity, scene: GamePlayMode) {
+        print("player hit treasure box")
+        self.treasureBoxHitAndSpawn(scene)
+    }
+    
+    override func contactWith2(node: SKSpriteNode, scene: GamePlayMode) {
+        print("throwable hit treasure box")
+        self.treasureBoxHitAndSpawn(scene)
     }
     
     

@@ -31,7 +31,7 @@ class PlayerEntity: SGEntity {
         addComponent(animationComponent)
         physicsComponent = PhysicsComponent(entity: self, bodySize: CGSize(width: spriteComponent.node.size.width * 0.8, height: spriteComponent.node.size.height * 0.8), bodyShape: .squareOffset, rotation: false)
         physicsComponent.setCategoryBitmask(ColliderType.Player.rawValue, dynamic: true)
-        physicsComponent.setPhysicsCollisions(ColliderType.Wall.rawValue | ColliderType.Destroyable.rawValue)
+        physicsComponent.setPhysicsCollisions(ColliderType.Wall.rawValue)
         physicsComponent.setPhysicsContacts(ColliderType.Collectable.rawValue | ColliderType.EndLevel.rawValue | ColliderType.KillZone.rawValue)
         addComponent(physicsComponent)
         
@@ -72,7 +72,7 @@ class PlayerEntity: SGEntity {
     }
     
     
-    override func contactWith(entity:SGEntity) {
+    override func contactWith(entity:SGEntity, scene: GamePlayMode) {
         
         if entity.name == "finishEntity" {
             gameScene.stateMachine.enterState(GameSceneWinState.self)
@@ -99,18 +99,23 @@ class PlayerEntity: SGEntity {
         }
         
         if entity.name == "treasureBoxEntity" {
-            if let spriteComponent = entity.componentForClass(SpriteComponent.self) {
-                let tileAtlas = SKTextureAtlas(named: "Tiles")
-                spriteComponent.node.texture = tileAtlas.textureNamed("t_openedBox")
-                gameScene.runAction(gameScene.sndCollectGood)
-                
-                print("treasure box opened, spawn collectible here")
-                
-                let gem = GemEntity(position: CGPoint(x: spriteComponent.node.position.x + 60, y:spriteComponent.node.position.y + 60), size: CGSize(width: 32, height: 32), texture:
-                    tileAtlas.textureNamed("diamond"), item: "diamond")
-                gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
-                self.gameScene.addEntity(gem, toLayer: self.gameScene.worldLayer)
+            
+            if let box = entity as? TreasureBoxEntity {
+                box.treasureBoxHitAndSpawn(self.gameScene)
             }
+            
+//            if let spriteComponent = entity.componentForClass(SpriteComponent.self) {
+//                let tileAtlas = SKTextureAtlas(named: "Tiles")
+//                spriteComponent.node.texture = tileAtlas.textureNamed("t_openedBox")
+//                gameScene.runAction(gameScene.sndCollectGood)
+//                
+//                print("treasure box opened, spawn collectible here")
+//                
+//                let gem = GemEntity(position: CGPoint(x: spriteComponent.node.position.x + 60, y:spriteComponent.node.position.y + 60), size: CGSize(width: 32, height: 32), texture:
+//                    tileAtlas.textureNamed("diamond"), item: "diamond")
+//                gem.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
+//                self.gameScene.addEntity(gem, toLayer: self.gameScene.worldLayer)
+//            }
         }
         
         if entity.name == "killZoneEntity" {
@@ -126,8 +131,10 @@ class PlayerEntity: SGEntity {
     func throwObject(){
         if let spriteComponent = self.spriteComponent {
         let object = SKSpriteNode()
-        var physicsBody = SKPhysicsBody()
+        var physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 32, height: 32))
         physicsBody.dynamic = true
+        physicsBody.categoryBitMask = ColliderType.Projectile.rawValue  
+        physicsBody.contactTestBitMask = ColliderType.Destroyable.rawValue
         object.physicsBody = physicsBody
         object.position = CGPoint(x: spriteComponent.node.position.x + 10, y:  spriteComponent.node.position.y + 20)
         object.size = CGSize(width: 32, height: 32)
@@ -136,8 +143,8 @@ class PlayerEntity: SGEntity {
         let tileAtlas = SKTextureAtlas(named: "Tiles")
         object.texture = tileAtlas.textureNamed("diamond")
         gameScene.projectileLayer.addChild(object)
-        //let throwAction = SKAction.moveToX(object.position.x + 200, duration: 0.5)
-        let throwAction = SKAction.applyImpulse(CGVectorMake(400.0, 200.0), atPoint: object.position, duration: 0.35)
+        let throwAction = SKAction.moveToX(object.position.x + 200, duration: 0.5)
+//        let throwAction = SKAction.applyImpulse(CGVectorMake(400.0, 200.0), atPoint: object.position, duration: 0.35)
         let waitAction = SKAction.waitForDuration(1)
         let removeAction = SKAction.removeFromParent()
         let actionSeq = SKAction.sequence([throwAction, waitAction, removeAction])
