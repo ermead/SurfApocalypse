@@ -40,7 +40,7 @@ class MainMenu: SGScene {
         //For debugging
         
         let buildButton = SKLabelNode(fontNamed: "MarkerFelt-Wide")
-        buildButton.posByScreen(0.5, y: 0.05)
+        buildButton.posByScreen(0.75, y: 0.05)
         buildButton.fontSize = 56
         buildButton.text = lt("Build")
         buildButton.fontColor = SKColor.whiteColor()
@@ -61,7 +61,7 @@ class MainMenu: SGScene {
         
         #if os(OSX)
             let exitButton = SKLabelNode(fontNamed: "MarkerFelt-Wide")
-            exitButton.posByScreen(0.5, y: 0.1)
+            exitButton.posByScreen(0.5, y: 0.05)
             exitButton.fontSize = 56
             exitButton.text = lt("Exit")
             exitButton.fontColor = SKColor.whiteColor()
