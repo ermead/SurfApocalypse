@@ -201,6 +201,7 @@ class GameSceneWinState: GameSceneState {
     override func didEnterWithPreviousState(previousState: GKState?) {
         let nextScene = PostScreen(size: gs.scene!.size)
         nextScene.level = gs.levelIndex
+        nextScene.characterIndex = gs.characterIndex
         nextScene.win = true
         nextScene.gems = gs.gemsCollected
         nextScene.gumdrops = gs.gumdropsCollected
@@ -215,6 +216,7 @@ class GameSceneLoseState: GameSceneState {
     override func didEnterWithPreviousState(previousState: GKState?) {
         let nextScene = PostScreen(size: gs.scene!.size)
         nextScene.level = gs.levelIndex
+        nextScene.characterIndex = gs.characterIndex
         nextScene.win = false
         nextScene.gems = gs.gemsCollected
         nextScene.gumdrops = gs.gumdropsCollected

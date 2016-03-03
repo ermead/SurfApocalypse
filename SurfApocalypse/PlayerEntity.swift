@@ -18,6 +18,7 @@ class PlayerEntity: SGEntity {
     var physicsComponent: PhysicsComponent!
     var scrollerComponent: SideScrollComponent!
     var gameScene:GamePlayMode!
+    var throwDistance: CGFloat = 200
     
     init(position: CGPoint, size: CGSize, firstFrame:SKTexture, atlas: SKTextureAtlas, scene:GamePlayMode) {
         super.init()
@@ -32,7 +33,7 @@ class PlayerEntity: SGEntity {
         physicsComponent = PhysicsComponent(entity: self, bodySize: CGSize(width: spriteComponent.node.size.width * 0.8, height: spriteComponent.node.size.height * 0.8), bodyShape: .squareOffset, rotation: false)
         physicsComponent.setCategoryBitmask(ColliderType.Player.rawValue, dynamic: true)
         physicsComponent.setPhysicsCollisions(ColliderType.Wall.rawValue)
-        physicsComponent.setPhysicsContacts(ColliderType.Collectable.rawValue | ColliderType.EndLevel.rawValue | ColliderType.KillZone.rawValue | ColliderType.Projectile.rawValue)
+        physicsComponent.setPhysicsContacts(ColliderType.Collectable.rawValue | ColliderType.EndLevel.rawValue | ColliderType.KillZone.rawValue | ColliderType.Projectile.rawValue | ColliderType.Destroyable.rawValue)
         addComponent(physicsComponent)
         
         scrollerComponent = SideScrollComponent(entity: self)
@@ -135,7 +136,7 @@ class PlayerEntity: SGEntity {
         print("player speed dashing!")
         self.spriteComponent.node.physicsBody?.applyImpulse(CGVectorMake(10.0, 0))
         gameScene.zoomOut(0.75, duration: 0.5, returnTo: true)
-       
+        throwDistance = 400
 
     }
     
@@ -150,6 +151,14 @@ class PlayerEntity: SGEntity {
     
     func playerDied() {
         gameScene.stateMachine.enterState(GameSceneLoseState.self)
+    }
+    
+    func taperThrow(){
+        if throwDistance > 200 {
+            throwDistance = throwDistance * 0.8
+        } else {
+            throwDistance = 200
+        }
     }
     
     func throwObject(){
@@ -167,7 +176,8 @@ class PlayerEntity: SGEntity {
         let tileAtlas = SKTextureAtlas(named: "Tiles")
         object.texture = tileAtlas.textureNamed("gumdrop")
         gameScene.projectileLayer.addChild(object)
-        let throwAction = SKAction.moveToX(object.position.x + 200, duration: 0.5)
+        let throwAction = SKAction.moveToX(object.position.x + throwDistance, duration: 0.5)
+        taperThrow()
         let waitAction = SKAction.waitForDuration(1)
         let removeAction = SKAction.removeFromParent()
         let actionSeq = SKAction.sequence([throwAction, waitAction, removeAction])
