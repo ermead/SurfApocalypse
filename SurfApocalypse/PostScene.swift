@@ -16,9 +16,9 @@ class PostScreen: SGScene {
     
     var level:Int?
     var win:Bool?
-    var gems:Int?
-    var diamonds: Int?
-    var gumdrops: Int?
+    var gems:Int = 0
+    var diamonds: Int = 0
+    var gumdrops: Int = 0
     
     override func didMoveToView(view: SKView) {
         
@@ -41,7 +41,7 @@ class PostScreen: SGScene {
         nameBlock.fontColor = SKColor.blueColor()
         nameBlock.fontSize = 64
         if (win != nil) {
-            nameBlock.text = win! ? "You Won!" : "You Failed!"
+            nameBlock.text = win! ? "You Won!" : "Try Again!"
         }
         addChild(nameBlock)
         
@@ -49,21 +49,21 @@ class PostScreen: SGScene {
         gemsBlock.posByScreen(0.5, y: 0.5)
         gemsBlock.fontColor = SKColor.whiteColor()
         gemsBlock.fontSize = 22
-        gemsBlock.text = "\(gems!) gems collected"
+        gemsBlock.text = "\(gems) gems collected"
         addChild(gemsBlock)
         
         let diamondsBlock = SKLabelNode(fontNamed: "MarkerFelt-Wide")
         diamondsBlock.posByScreen(0.5, y: 0.4)
         diamondsBlock.fontColor = SKColor.whiteColor()
         diamondsBlock.fontSize = 22
-        diamondsBlock.text =  "\(diamonds!) diamonds collected"
+        diamondsBlock.text =  "\(diamonds) diamonds collected"
         addChild(diamondsBlock)
         
         let gumdropsBlock = SKLabelNode(fontNamed: "MarkerFelt-Wide")
         gumdropsBlock.posByScreen(0.5, y: 0.3)
         gumdropsBlock.fontColor = SKColor.whiteColor()
         gumdropsBlock.fontSize = 22
-        gumdropsBlock.text = "\(gumdrops!) gumdrops collected"
+        gumdropsBlock.text = "\(gumdrops) gumdrops collected"
         addChild(gumdropsBlock)
         
     }
@@ -71,8 +71,8 @@ class PostScreen: SGScene {
     func saveStats() {
         if win! {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "Level_\(level!)")
-            if gems! > NSUserDefaults.standardUserDefaults().integerForKey("\(level!)gems") {
-                NSUserDefaults.standardUserDefaults().setInteger(gems!, forKey: "\(level!)gems")
+            if gems > NSUserDefaults.standardUserDefaults().integerForKey("\(level!)gems") {
+                NSUserDefaults.standardUserDefaults().setInteger(gems, forKey: "\(level!)gems")
             }
             NSUserDefaults.standardUserDefaults().synchronize()
         }

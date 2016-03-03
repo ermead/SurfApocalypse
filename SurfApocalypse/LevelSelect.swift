@@ -36,7 +36,7 @@ class LevelSelect: SGScene {
         
         let nameBlock = SKLabelNode(fontNamed: "MarkerFelt-Wide")
         nameBlock.posByScreen(0.5, y: 0.9)
-        nameBlock.fontColor = SKColor.whiteColor()
+        nameBlock.fontColor = SKColor.blueColor()
         nameBlock.fontSize = 54
         nameBlock.text = "Select a Level:"
         addChild(nameBlock)
@@ -145,21 +145,22 @@ class LevelSelect: SGScene {
     
     #if !os(OSX)
     override func pressesBegan(presses: Set<UIPress>, withEvent event: UIPressesEvent?) {
-    
+       
+        //TODO: fix the level select index functionality for apple tv
         self.runAction(sndButtonClick)
-   
         if buildMode == false {
             let nextScene = GamePlayMode(size: self.scene!.size)
             nextScene.characterIndex = self.characterIndex
-            nextScene.levelIndex = (theNode.userData!["Index"] as? Int)!
+            nextScene.levelIndex = 0
             nextScene.scaleMode = self.scaleMode
             self.view?.presentScene(nextScene)
         } else {
             let nextScene = GameBuildMode(size: self.scene!.size)
-            nextScene.levelIndex = (theNode.userData!["Index"] as? Int)!
+            nextScene.levelIndex = 0
             nextScene.scaleMode = self.scaleMode
             self.view?.presentScene(nextScene)
         }
+   
     }
     #endif
 }

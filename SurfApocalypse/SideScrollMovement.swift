@@ -39,6 +39,7 @@ class SideScrollComponent: GKComponent {
     var isJumping = false
     var jumpTime:CGFloat = 0.0
     var isThrowing = false
+    var secondJumpAlreadyUsed = false
 
     var groundY:CGFloat = 0.0
     var previousY:CGFloat = 0.0
@@ -65,14 +66,27 @@ class SideScrollComponent: GKComponent {
         //Move sprite
         spriteComponent.node.position += (movementSpeed * CGFloat(seconds))
         
+        if let playerEnt = entity as? PlayerEntity {
+            
+            if playerEnt.spriteComponent.node.position.y <= -(playerEnt.gameScene.frame.height/2) {
+                print("Fallen Off!")
+                playerEnt.playerDied()
+            }
+        }
+        
         //Jump
+     
         if controlInput.jumpPressed && !isJumping {
+            
             if let playerEnt = entity as? PlayerEntity {
                 playerEnt.gameScene.runAction(playerEnt.gameScene.sndJump)
             }
+            
+            print("first jump")
             isJumping = true
             jumpTime = 0.05
             animationComponent.requestedAnimationState = .Jump
+            
         }
         
         if (jumpTime > 0.0) {
@@ -80,6 +94,7 @@ class SideScrollComponent: GKComponent {
             spriteComponent.node.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: (seconds * 120.0)), atPoint: spriteComponent.node.position)
             if ((spriteComponent.node.position.y - groundY) > 57) || ((spriteComponent.node.position.y <= previousY) && ((spriteComponent.node.position.y - groundY) > 2)) {
                 isJumping = false
+              
             }
             
         }
@@ -89,6 +104,7 @@ class SideScrollComponent: GKComponent {
                 let nodeDir = ((body.node?.position)! - spriteComponent.node.position).angle
                 if (nodeDir > -2.355 && nodeDir < -0.785) {
                     isJumping = false
+                   
                     animationComponent.requestedAnimationState = .Run
                 }
             }

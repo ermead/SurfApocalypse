@@ -52,6 +52,10 @@ class PlayerEntity: SGEntity {
             playerDied()
         }
         
+        if spriteComponent.node.position.y < gameScene.frame.height {
+            print("player is off screen")
+        }
+        
     
     }
     

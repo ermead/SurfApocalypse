@@ -138,6 +138,8 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     override func update(currentTime: NSTimeInterval) {
         
         if !pauseLoop {
+        
+    
         var deltaTime = currentTime - lastUpdateTimeInterval
         deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
         lastUpdateTimeInterval = currentTime
@@ -145,11 +147,11 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         //Update Components
         
         for componentSystem in componentSystems {
-            componentSystem .updateWithDeltaTime(deltaTime)
+            componentSystem.updateWithDeltaTime(deltaTime)
         }
             
         sideScrollSystem.updateWithDeltaTime(deltaTime, controlInput: control)
-            
+       
          //Update Game
             
          gemsLabel.text = lt("gems: \(gemsCollected)")
