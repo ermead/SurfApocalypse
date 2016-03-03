@@ -121,9 +121,10 @@ class SideScrollComponent: GKComponent {
                 //if playerEnt.gameScene.projectileLayer.children.count < 4 {
                 if playerEnt.gameScene.gumdropsCollected > 0 {
                     
-                    playerEnt.gameScene.gumdropsCollected--
+                    playerEnt.gameScene.gumdropsCollected -= 2
                     
                     isThrowing = true
+                    playerEnt.isThrowing = true
                     
                     animationComponent.requestedAnimationState = AnimationState.IdleThrow
                     
@@ -135,6 +136,7 @@ class SideScrollComponent: GKComponent {
                 playerEnt.gameScene.runAction(actionWait, completion: { () -> Void in
                     
                     self.isThrowing = false
+                    playerEnt.isThrowing = false
                 })
              
             }

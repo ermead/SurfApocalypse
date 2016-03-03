@@ -19,6 +19,7 @@ class PlayerEntity: SGEntity {
     var scrollerComponent: SideScrollComponent!
     var gameScene:GamePlayMode!
     var throwDistance: CGFloat = 200
+    var isThrowing = false
     
     init(position: CGPoint, size: CGSize, firstFrame:SKTexture, atlas: SKTextureAtlas, scene:GamePlayMode) {
         super.init()
@@ -87,15 +88,16 @@ class PlayerEntity: SGEntity {
                 spriteComponent.node.removeFromParent()
                 gameScene.runAction(gameScene.sndCollectGood)
                 if let gem = entity as? GemEntity{
-                    
-                    if gem.item == "gem" {
-                        gameScene.gemsCollected++
-                    } else if gem.item == "gumdrop" {
-                        print("gumdrop collected")
-                        gameScene.gumdropsCollected++
-                    } else if gem.item == "diamond" {
-                        print("diamond collected")
-                        gameScene.diamondsCollected++
+                    if isThrowing == false {
+                        if gem.item == "gem" {
+                            gameScene.gemsCollected++
+                        } else if gem.item == "gumdrop" {
+                            print("gumdrop collected")
+                            gameScene.gumdropsCollected++
+                        } else if gem.item == "diamond" {
+                            print("diamond collected")
+                            gameScene.diamondsCollected++
+                        }
                     }
                 }
             }

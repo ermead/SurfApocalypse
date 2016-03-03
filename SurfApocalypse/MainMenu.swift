@@ -29,7 +29,7 @@ class MainMenu: SGScene {
         addChild(background)
         
         let playButton = SKLabelNode(fontNamed: "MarkerFelt-Wide")
-        playButton.posByScreen(0.5, y: 0.3)
+        playButton.posByScreen(0.5, y: 0.15)
         playButton.fontSize = 64
         playButton.text = lt("Play")
         playButton.fontColor = SKColor.whiteColor()
@@ -40,7 +40,7 @@ class MainMenu: SGScene {
         //For debugging
         
         let buildButton = SKLabelNode(fontNamed: "MarkerFelt-Wide")
-        buildButton.posByScreen(0.5, y: 0.2)
+        buildButton.posByScreen(0.5, y: 0.05)
         buildButton.fontSize = 56
         buildButton.text = lt("Build")
         buildButton.fontColor = SKColor.whiteColor()
@@ -55,7 +55,7 @@ class MainMenu: SGScene {
         title.zPosition = 15
         addChild(title)
         title.runAction(SKAction.sequence([
-            SKAction.moveTo(CGPoint(screenX: 0.5, screenY: 0.7), duration: 1.2),
+            SKAction.moveTo(CGPoint(screenX: 0.5, screenY: 0.6), duration: 1.2),
             sndTitleDrop
             ]))
         
