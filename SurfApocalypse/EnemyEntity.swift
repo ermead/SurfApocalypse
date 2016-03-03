@@ -15,7 +15,9 @@ class EnemyEntity: SGEntity {
     
     var spriteComponent: SpriteComponent!
     var physicsComponent: PhysicsComponent!
+    var animationComponent: AnimationComponent!
     var item: String!
+    var atlas: SKTextureAtlas = SKTextureAtlas(named: "Tiles")
     
     init(position: CGPoint, size: CGSize, texture:SKTexture, item: String) {
         super.init()
@@ -23,6 +25,8 @@ class EnemyEntity: SGEntity {
         //Initialize components
         spriteComponent = SpriteComponent(entity: self, texture: texture, size: size, position:position)
         addComponent(spriteComponent)
+        animationComponent = AnimationComponent(node: spriteComponent.node, animations: loadAnimations(atlas))
+        addComponent(animationComponent)
         physicsComponent = PhysicsComponent(entity: self, bodySize: CGSize(width: spriteComponent.node.size.width * 0.8, height: spriteComponent.node.size.height * 0.8), bodyShape: .square, rotation: false)
         physicsComponent.setCategoryBitmask(ColliderType.Destroyable.rawValue, dynamic: false)
         physicsComponent.setPhysicsCollisions(ColliderType.None.rawValue)
@@ -34,6 +38,12 @@ class EnemyEntity: SGEntity {
         spriteComponent.node.name = "enemyNode"
         name = "enemyEntity"
         self.item = item
+    }
+    
+    override func updateWithDeltaTime(seconds: NSTimeInterval) {
+        
+        self.spriteComponent.node.position = CGPoint(x:self.spriteComponent.node.position.x + 100, y: self.spriteComponent.node.position.y)
+        
     }
     
     func enemyHitAndSpawn(scene: GamePlayMode){
@@ -55,6 +65,16 @@ class EnemyEntity: SGEntity {
     override func contactWith(entity: SGEntity, scene: GamePlayMode) {
         print("player hit enemy")
         //self.treasureBoxHitAndSpawn(scene)
+    }
+    
+    func loadAnimations(textureAtlas:SKTextureAtlas) -> [AnimationState: Animation] {
+        var animations = [AnimationState: Animation]()
+        
+        animations[AnimationState.EnemyWalk] = AnimationComponent.animationFromAtlas(textureAtlas,
+            withImageIdentifier: AnimationState.EnemyWalk.rawValue,
+            forAnimationState: .EnemyWalk, repeatTexturesForever: true, textureSize: CGSize(width: 40.1, height: 48.0))
+        
+        return animations
     }
     
     

@@ -18,6 +18,7 @@ enum AnimationState: String {
     case Run = "Run_"
     case Slide = "Slide_"
     case IdleThrow = "Throw_"
+    case EnemyWalk = "EnemyWalk_"
 }
 
 enum ColliderType:UInt32 {
@@ -75,7 +76,7 @@ struct GameSettings {
         struct zValues {
             static let zBackground01:CGFloat = 10
             static let zBackground02:CGFloat = 20
-            static let zBackground03:CGFloat = 30
+            static let zBackground03:CGFloat = 101
             static let zWorld:CGFloat = 100.0
             static let zWorldFront:CGFloat = 150.0
             static let zPlayer: CGFloat = 125.0
