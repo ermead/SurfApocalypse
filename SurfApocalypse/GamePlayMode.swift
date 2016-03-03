@@ -10,8 +10,15 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+var randomTreasures = ["diamond", "gumdrop", "gem"]
+
 @available(OSX 10.11, *)
 class GamePlayMode: SGScene, SKPhysicsContactDelegate {
+    
+    
+    //random treasures:
+    let randomTreasure = GKRandomDistribution(forDieWithSideCount: randomTreasures.count)
+    let randomNumberOfItems = GKRandomDistribution(forDieWithSideCount: 6)
     
     //MARK: Instance Variables
     
@@ -130,6 +137,36 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         
         sideScrollSystem.addComponentWithEntity(entity)
         
+    }
+    
+    func getRandomTreasureEntityAndSpawnIn(location: CGPoint){
+        let randomInt = randomTreasure.nextInt()
+        let entityName = randomTreasures[randomInt - 1]
+        print("random")
+        let adjustedInt = CGFloat((CGFloat(randomInt) * 36) - 72)
+        let randomLocation = CGPoint(x: location.x + adjustedInt, y: location.y + 20)
+        
+        switch entityName {
+        case "diamond" :
+            print("diamond")
+            let diamond = GemEntity(position: randomLocation, size: CGSize(width: 32, height: 32), texture: SKTextureAtlas(named: "Tiles").textureNamed("diamond"), item: "diamond")
+            diamond.spriteComponent.node.zPosition = 150
+            self.addEntity(diamond, toLayer: worldLayer)
+            break
+        case "gumdrop" :
+            print("gumdrop")
+            let gd = GemEntity(position: randomLocation, size: CGSize(width: 32, height: 32), texture: SKTextureAtlas(named: "Tiles").textureNamed("gumdrop"), item: "gumdrop")
+            gd.spriteComponent.node.zPosition = 150
+            self.addEntity(gd, toLayer: worldLayer)
+            break
+        case "gem" :
+            print("gem")
+            let gem = GemEntity(position: randomLocation, size: CGSize(width: 32, height: 32), texture: SKTextureAtlas(named: "Tiles").textureNamed("gem"), item: "gem")
+            gem.spriteComponent.node.zPosition = 150
+            self.addEntity(gem, toLayer: worldLayer)
+            break
+        default : break
+        }
     }
     
    
@@ -273,11 +310,17 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
                 let treasurebox = sg_entity
                 if contact.bodyB.node?.name == "projectile" {
                     print("throwable collided with box!")
+                    contact.bodyB.node?.removeFromParent()
                     let tb = TreasureBoxEntity(position: treasurebox.position, size: CGSize(width: 32, height: 32), texture: SKTextureAtlas(named: "Tiles").textureNamed("t_openedBox"), item: "opened box")
                     treasurebox.removeFromParent()
                     tb.spriteComponent.node.zPosition = 150
                     self.addEntity(tb, toLayer: worldLayer)
                     //tb.treasureBoxHitAndSpawn(self)
+                    let random = randomNumberOfItems.nextInt()
+                    for var i = 0; i <= random; i++ {
+                        getRandomTreasureEntityAndSpawnIn(CGPoint(x: treasurebox.position.x + 10, y: treasurebox.position.y + 20))
+                    }
+              
                 }
             }
             
@@ -299,7 +342,7 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
                 let treasurebox = sg_entity
                 if contact.bodyA.node?.name == "projectile" {
                     print("throwable collided with box!")
-                   
+                    contact.bodyA.node?.removeFromParent()
                     let tb = TreasureBoxEntity(position: treasurebox.position, size: CGSize(width: 32, height: 32), texture: SKTextureAtlas(named: "Tiles").textureNamed("t_openedBox"), item: "opened box")
                     
                     treasurebox.removeFromParent()
@@ -307,6 +350,10 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
                     self.addEntity(tb, toLayer: worldLayer)
                     //tb.treasureBoxHitAndSpawn(self)
                     
+                    let random = randomNumberOfItems.nextInt()
+                    for var i = 0; i <= random; i++ {
+                        getRandomTreasureEntityAndSpawnIn(CGPoint(x: treasurebox.position.x + 10, y: treasurebox.position.y + 20))
+                    }
                 }
             }
             

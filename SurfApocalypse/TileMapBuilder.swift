@@ -111,11 +111,9 @@ struct tileMapBuilder {
     func printLayer() {
         print("Tile Layer:")
         for row in tileLayer {
-            if row == tileLayer.last! {
-                print(row)
-            } else {
+         
                 print("\(row),")
-            }
+            
         }
     }
     

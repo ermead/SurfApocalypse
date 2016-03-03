@@ -100,7 +100,11 @@ class PlayerEntity: SGEntity {
         if entity.name == "treasureBoxEntity" {
             
             if let box = entity as? TreasureBoxEntity {
-                box.treasureBoxHitAndSpawn(self.gameScene)
+                if box.item == "opened box" {
+                    return
+                } else {
+                    box.treasureBoxHitAndSpawn(self.gameScene)
+                }
             }
             
        }

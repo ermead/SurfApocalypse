@@ -55,7 +55,7 @@ class TreasureBoxEntity: SGEntity {
     
     override func contactWith(entity: SGEntity, scene: GamePlayMode) {
         print("player hit treasure box")
-        self.treasureBoxHitAndSpawn(scene)
+        //self.treasureBoxHitAndSpawn(scene)
     }
   
     
