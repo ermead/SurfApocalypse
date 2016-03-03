@@ -113,7 +113,36 @@ class PlayerEntity: SGEntity {
             playerDied()
         }
         
+        if entity.name == "speedDashEntity" {
+            
+            if let entity = entity as? SpeedDashEntity {
+                if entity.item == "speedDash" {
+                    playerSpeedDash()
+                } else if entity.item == "bounce" {
+                    playerBounce()
+                }
+            }
+            
+        }
+        
     }
+    
+    func playerSpeedDash() {
+        print("player speed dashing!")
+        self.spriteComponent.node.physicsBody?.applyImpulse(CGVectorMake(10.0, 0))
+        gameScene.zoomOut(0.75, duration: 0.5, returnTo: true)
+       
+
+    }
+    
+    func playerBounce() {
+        print("player bounced!")
+        self.spriteComponent.node.physicsBody?.applyImpulse(CGVectorMake(0, 10.0))
+        gameScene.zoomOut(0.75, duration: 0.5, returnTo: true)
+    }
+    
+    
+   
     
     func playerDied() {
         gameScene.stateMachine.enterState(GameSceneLoseState.self)

@@ -424,6 +424,20 @@ class TileLayer: SKNode, tileMapDelegate {
             node.name = "placeholder_treasureBox"
             addChild(node)
             break
+            
+        case .tileSpeedDash:
+            let node = SKNode()
+            node.position = location
+            node.name = "placeholder_SpeedDash"
+            addChild(node)
+            break
+            
+        case .tileBounce:
+            let node = SKNode()
+            node.position = location
+            node.name = "placeholder_Bounce"
+            addChild(node)
+            break
          
         default:
             break

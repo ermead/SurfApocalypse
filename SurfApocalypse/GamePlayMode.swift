@@ -386,6 +386,19 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     
     //MARK: Camera Settings:
     
+    func zoomOut(scale: CGFloat, duration: Double, returnTo: Bool) {
+        let previousCameraScale: CGFloat = 0.64
+            camera?.runAction(SKAction.scaleTo(scale, duration: duration))
+        if returnTo {
+            let wait = SKAction.waitForDuration(duration + 1)
+            camera?.runAction(SKAction.sequence([wait, SKAction.scaleTo(previousCameraScale, duration: duration)]))
+        }
+    }
+    
+    func zoomIn(scale: CGFloat) {
+        camera?.setScale(scale)
+    }
+    
     
     func setCameraConstraints() {
         

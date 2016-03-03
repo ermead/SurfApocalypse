@@ -23,6 +23,9 @@
 		D70C42AD1C7A6D47006E9B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D70C42AC1C7A6D46006E9B76 /* Assets.xcassets */; };
 		D70C42B51C7A6DFF006E9B76 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70C42721C7A6C70006E9B76 /* GameScene.swift */; };
 		D70C42B61C7A6DFF006E9B76 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70C42721C7A6C70006E9B76 /* GameScene.swift */; };
+		D735E0E51C87EFC600B066EF /* SpeedDashEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735E0E41C87EFC600B066EF /* SpeedDashEntity.swift */; };
+		D735E0E61C87EFC600B066EF /* SpeedDashEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735E0E41C87EFC600B066EF /* SpeedDashEntity.swift */; };
+		D735E0E71C87EFC600B066EF /* SpeedDashEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735E0E41C87EFC600B066EF /* SpeedDashEntity.swift */; };
 		D7CBFD7B1C8151A500800CCB /* SGEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD7A1C8151A500800CCB /* SGEntity.swift */; };
 		D7CBFD7C1C8151A500800CCB /* SGEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD7A1C8151A500800CCB /* SGEntity.swift */; };
 		D7CBFD7D1C8151A500800CCB /* SGEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD7A1C8151A500800CCB /* SGEntity.swift */; };
@@ -204,6 +207,7 @@
 		D70C42AA1C7A6D46006E9B76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D70C42AC1C7A6D46006E9B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D70C42AE1C7A6D47006E9B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D735E0E41C87EFC600B066EF /* SpeedDashEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedDashEntity.swift; sourceTree = "<group>"; };
 		D7CBFD7A1C8151A500800CCB /* SGEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGEntity.swift; sourceTree = "<group>"; };
 		D7CBFD7E1C81529200800CCB /* GemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GemEntity.swift; sourceTree = "<group>"; };
 		D7CBFD821C8152F900800CCB /* FinishEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishEntity.swift; sourceTree = "<group>"; };
@@ -383,6 +387,7 @@
 				D7CBFD921C81621800800CCB /* KillZoneEntity.swift */,
 				D7E1D8A61C85485400BA518A /* TreasureBoxEntity.swift */,
 				D7E1D8F71C86325600BA518A /* ThrownEntity.swift */,
+				D735E0E41C87EFC600B066EF /* SpeedDashEntity.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -698,6 +703,7 @@
 			files = (
 				D7CD63B81C7CFF1A00E8CAF9 /* ParallaxComponent.swift in Sources */,
 				D7CD631F1C7BFF2900E8CAF9 /* IOS_Responder.swift in Sources */,
+				D735E0E51C87EFC600B066EF /* SpeedDashEntity.swift in Sources */,
 				D7CD635E1C7C12EE00E8CAF9 /* MainMenu.swift in Sources */,
 				D7CBFD8B1C815BED00800CCB /* LevelSelect.swift in Sources */,
 				D7E1D8F81C86325600BA518A /* ThrownEntity.swift in Sources */,
@@ -773,6 +779,7 @@
 				D7CD63A41C7CF17600E8CAF9 /* TileMapLevels.swift in Sources */,
 				D7CBFD801C81529200800CCB /* GemEntity.swift in Sources */,
 				D7CD63241C7C010B00E8CAF9 /* OSX_Responder.swift in Sources */,
+				D735E0E61C87EFC600B066EF /* SpeedDashEntity.swift in Sources */,
 				D7CD63761C7C200F00E8CAF9 /* CGPoint+Extensions.swift in Sources */,
 				D7CD63851C7C200F00E8CAF9 /* SKColor+Extensions.swift in Sources */,
 				D70C42B51C7A6DFF006E9B76 /* GameScene.swift in Sources */,
@@ -823,6 +830,7 @@
 				D7CD63A51C7CF17600E8CAF9 /* TileMapLevels.swift in Sources */,
 				D7CBFD811C81529200800CCB /* GemEntity.swift in Sources */,
 				D70C42B61C7A6DFF006E9B76 /* GameScene.swift in Sources */,
+				D735E0E71C87EFC600B066EF /* SpeedDashEntity.swift in Sources */,
 				D7CD63771C7C200F00E8CAF9 /* CGPoint+Extensions.swift in Sources */,
 				D7CD63861C7C200F00E8CAF9 /* SKColor+Extensions.swift in Sources */,
 				D70C42A61C7A6D46006E9B76 /* GameViewController.swift in Sources */,

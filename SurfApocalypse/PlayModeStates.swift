@@ -115,6 +115,22 @@ class GameSceneInitialState: GameSceneState {
             
         }
         
+        gs.worldLayer.enumerateChildNodesWithName("placeholder_SpeedDash") { (node, stop) -> Void in
+            let speedDash = SpeedDashEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("Mushroom_2"), item: "speedDash")
+            speedDash.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
+            self.gs.addEntity(speedDash, toLayer: self.gs.worldLayer)
+            
+        }
+        
+        gs.worldLayer.enumerateChildNodesWithName("placeholder_Bounce") { (node, stop) -> Void in
+            let speedDash = SpeedDashEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("Mushroom_1"), item: "bounce")
+            speedDash.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
+            self.gs.addEntity(speedDash, toLayer: self.gs.worldLayer)
+            
+        }
+        
+        
+        
         
         /*
         let killZone = KillZoneEntity(position: gs.worldFrame.origin, size: CGSize(width: 20.0, height: gs.worldFrame.size.height), texture: SKTexture(noiseWithSmoothness: 0.5, size: CGSize(width: 20.0, height: gs.worldFrame.size.height), grayscale: true))
