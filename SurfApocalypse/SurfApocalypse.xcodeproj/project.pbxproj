@@ -26,6 +26,9 @@
 		D735E0E51C87EFC600B066EF /* SpeedDashEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735E0E41C87EFC600B066EF /* SpeedDashEntity.swift */; };
 		D735E0E61C87EFC600B066EF /* SpeedDashEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735E0E41C87EFC600B066EF /* SpeedDashEntity.swift */; };
 		D735E0E71C87EFC600B066EF /* SpeedDashEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735E0E41C87EFC600B066EF /* SpeedDashEntity.swift */; };
+		D735E0E91C87FEFC00B066EF /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735E0E81C87FEFC00B066EF /* EnemyEntity.swift */; };
+		D735E0EA1C87FEFC00B066EF /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735E0E81C87FEFC00B066EF /* EnemyEntity.swift */; };
+		D735E0EB1C87FEFC00B066EF /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735E0E81C87FEFC00B066EF /* EnemyEntity.swift */; };
 		D7CBFD7B1C8151A500800CCB /* SGEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD7A1C8151A500800CCB /* SGEntity.swift */; };
 		D7CBFD7C1C8151A500800CCB /* SGEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD7A1C8151A500800CCB /* SGEntity.swift */; };
 		D7CBFD7D1C8151A500800CCB /* SGEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD7A1C8151A500800CCB /* SGEntity.swift */; };
@@ -208,6 +211,7 @@
 		D70C42AC1C7A6D46006E9B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D70C42AE1C7A6D47006E9B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D735E0E41C87EFC600B066EF /* SpeedDashEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedDashEntity.swift; sourceTree = "<group>"; };
+		D735E0E81C87FEFC00B066EF /* EnemyEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyEntity.swift; sourceTree = "<group>"; };
 		D7CBFD7A1C8151A500800CCB /* SGEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGEntity.swift; sourceTree = "<group>"; };
 		D7CBFD7E1C81529200800CCB /* GemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GemEntity.swift; sourceTree = "<group>"; };
 		D7CBFD821C8152F900800CCB /* FinishEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishEntity.swift; sourceTree = "<group>"; };
@@ -388,6 +392,7 @@
 				D7E1D8A61C85485400BA518A /* TreasureBoxEntity.swift */,
 				D7E1D8F71C86325600BA518A /* ThrownEntity.swift */,
 				D735E0E41C87EFC600B066EF /* SpeedDashEntity.swift */,
+				D735E0E81C87FEFC00B066EF /* EnemyEntity.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -714,6 +719,7 @@
 				D7CD638A1C7C200F00E8CAF9 /* SKTAudio.swift in Sources */,
 				D7CD63C01C7D040000E8CAF9 /* AnimationComponent.swift in Sources */,
 				D70C42731C7A6C70006E9B76 /* GameScene.swift in Sources */,
+				D735E0E91C87FEFC00B066EF /* EnemyEntity.swift in Sources */,
 				D7E1D8A71C85485400BA518A /* TreasureBoxEntity.swift in Sources */,
 				D7CD63901C7C200F00E8CAF9 /* SKTTimingFunctions.swift in Sources */,
 				D7CD63A81C7CF30E00E8CAF9 /* TileLayer.swift in Sources */,
@@ -784,6 +790,7 @@
 				D7CD63851C7C200F00E8CAF9 /* SKColor+Extensions.swift in Sources */,
 				D70C42B51C7A6DFF006E9B76 /* GameScene.swift in Sources */,
 				D7CBFD881C815B2E00800CCB /* CharSelect.swift in Sources */,
+				D735E0EA1C87FEFC00B066EF /* EnemyEntity.swift in Sources */,
 				D7CD637C1C7C200F00E8CAF9 /* Int+Extensions.swift in Sources */,
 				D7CD63B91C7CFF1A00E8CAF9 /* ParallaxComponent.swift in Sources */,
 				D7CBFD7C1C8151A500800CCB /* SGEntity.swift in Sources */,
@@ -835,6 +842,7 @@
 				D7CD63861C7C200F00E8CAF9 /* SKColor+Extensions.swift in Sources */,
 				D70C42A61C7A6D46006E9B76 /* GameViewController.swift in Sources */,
 				D7CBFD891C815B2E00800CCB /* CharSelect.swift in Sources */,
+				D735E0EB1C87FEFC00B066EF /* EnemyEntity.swift in Sources */,
 				D7CD637D1C7C200F00E8CAF9 /* Int+Extensions.swift in Sources */,
 				D7CD63BA1C7CFF1A00E8CAF9 /* ParallaxComponent.swift in Sources */,
 				D7CBFD7D1C8151A500800CCB /* SGEntity.swift in Sources */,

@@ -438,6 +438,13 @@ class TileLayer: SKNode, tileMapDelegate {
             node.name = "placeholder_Bounce"
             addChild(node)
             break
+            
+        case .tileEnemy:
+            let node = SKNode()
+            node.position = location
+            node.name = "placeholder_Enemy"
+            addChild(node)
+            break
          
         default:
             break

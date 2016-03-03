@@ -306,6 +306,11 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         
         if let sg_entity = contact.bodyA.node {
             
+            if sg_entity.name == "enemyNode" {
+                print("something hit an enemy")
+            }
+            
+            
             if sg_entity.name == "treasureBoxNode" {
                 let treasurebox = sg_entity
                 if contact.bodyB.node?.name == "projectile" {
@@ -337,6 +342,11 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         }
         
         if let sg_entity = contact.bodyB.node {
+            
+            if sg_entity.name == "enemyNode" {
+                print("something hit an enemy")
+            }
+            
             
             if sg_entity.name == "treasureBoxNode" {
                 let treasurebox = sg_entity

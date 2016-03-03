@@ -129,6 +129,13 @@ class GameSceneInitialState: GameSceneState {
             
         }
         
+        gs.worldLayer.enumerateChildNodesWithName("placeholder_Enemy") { (node, stop) -> Void in
+            let enemy = EnemyEntity(position: node.position, size: CGSize(width: 32, height: 32), texture: tileAtlas.textureNamed("rock1"), item: "enemy")
+            enemy.spriteComponent.node.zPosition = GameSettings.GameParams.zValues.zWorldFront
+            self.gs.addEntity(enemy, toLayer: self.gs.worldLayer)
+            
+        }
+        
         
         
         

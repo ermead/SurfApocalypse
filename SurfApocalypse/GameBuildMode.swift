@@ -33,7 +33,7 @@ class GameBuildMode: SGScene {
         "0","1","2","3","4","5","6","7","8","9",
         "10","11","12","13","14","15","16","17",
         "18","B3","Sign_1","Sign_2",
-        "Crate","gem","Mushroom_1","Mushroom_2", "Tree_1", "Tree_2", "Tree_3", "castle", "diamond", "rock1", "rock2", "gumdrop", "grass", "ginger", "bush", "bushes", "t_treasureBox", "diamond", "diamond"
+        "Crate","gem","Mushroom_1","Mushroom_2", "Tree_1", "Tree_2", "Tree_3", "castle", "diamond", "rock1", "rock2", "gumdrop", "grass", "ginger", "bush", "bushes", "t_treasureBox", "diamond", "diamond", "rock1"
     ]
     
 
@@ -278,6 +278,21 @@ class GameBuildMode: SGScene {
                     label.position = child.position
                     worldLayer.addChild(label)
                     break
+                    
+                case "placeholder_Bounce":
+                    let label = SKLabelNode(text: "^^")
+                    label.zPosition = GameSettings.GameParams.zValues.zWorld + 1
+                    label.position = child.position
+                    worldLayer.addChild(label)
+                    break
+                    
+                case "placeholder_Enemy":
+                    let label = SKLabelNode(text: "X")
+                    label.zPosition = GameSettings.GameParams.zValues.zWorld + 1
+                    label.position = child.position
+                    worldLayer.addChild(label)
+                    break
+                    
                 default:
                     break
                 }

@@ -52,6 +52,7 @@ enum tileType: Int {
     case tileTreasureBox         = 38
     case tileSpeedDash           = 39
     case tileBounce              = 40
+    case tileEnemy               = 41
 }
 
 protocol tileMapDelegate {

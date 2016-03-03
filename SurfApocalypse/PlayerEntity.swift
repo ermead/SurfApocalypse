@@ -73,6 +73,10 @@ class PlayerEntity: SGEntity {
   
     override func contactWith(entity:SGEntity, scene: GamePlayMode) {
         
+        if entity.name == "enemyEntity" {
+            print("player hit enemy")
+        }
+        
         if entity.name == "finishEntity" {
             gameScene.stateMachine.enterState(GameSceneWinState.self)
         }
