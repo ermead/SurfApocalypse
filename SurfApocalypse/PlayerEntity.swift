@@ -32,7 +32,7 @@ class PlayerEntity: SGEntity {
         physicsComponent = PhysicsComponent(entity: self, bodySize: CGSize(width: spriteComponent.node.size.width * 0.8, height: spriteComponent.node.size.height * 0.8), bodyShape: .squareOffset, rotation: false)
         physicsComponent.setCategoryBitmask(ColliderType.Player.rawValue, dynamic: true)
         physicsComponent.setPhysicsCollisions(ColliderType.Wall.rawValue)
-        physicsComponent.setPhysicsContacts(ColliderType.Collectable.rawValue | ColliderType.EndLevel.rawValue | ColliderType.KillZone.rawValue)
+        physicsComponent.setPhysicsContacts(ColliderType.Collectable.rawValue | ColliderType.EndLevel.rawValue | ColliderType.KillZone.rawValue | ColliderType.Projectile.rawValue)
         addComponent(physicsComponent)
         
         scrollerComponent = SideScrollComponent(entity: self)
@@ -52,11 +52,6 @@ class PlayerEntity: SGEntity {
             playerDied()
         }
         
-        if spriteComponent.node.position.y < gameScene.frame.height {
-            print("player is off screen")
-        }
-        
-    
     }
     
     func loadAnimations(textureAtlas:SKTextureAtlas) -> [AnimationState: Animation] {
@@ -126,14 +121,14 @@ class PlayerEntity: SGEntity {
         var physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 32, height: 32))
         physicsBody.dynamic = true
         physicsBody.categoryBitMask = ColliderType.Projectile.rawValue  
-        physicsBody.contactTestBitMask = ColliderType.Destroyable.rawValue
+        physicsBody.contactTestBitMask = (ColliderType.Destroyable.rawValue | ColliderType.Player.rawValue)
         object.physicsBody = physicsBody
         object.position = CGPoint(x: spriteComponent.node.position.x + 10, y:  spriteComponent.node.position.y + 20)
-        object.size = CGSize(width: 32, height: 32)
+        object.size = CGSize(width: 24, height: 24)
         object.zPosition = GameSettings.GameParams.zValues.zWorld
         object.name = "projectile"
         let tileAtlas = SKTextureAtlas(named: "Tiles")
-        object.texture = tileAtlas.textureNamed("diamond")
+        object.texture = tileAtlas.textureNamed("gumdrop")
         gameScene.projectileLayer.addChild(object)
         let throwAction = SKAction.moveToX(object.position.x + 200, duration: 0.5)
         let waitAction = SKAction.waitForDuration(1)

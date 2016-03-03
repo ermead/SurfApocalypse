@@ -280,6 +280,17 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
                     //tb.treasureBoxHitAndSpawn(self)
                 }
             }
+            
+            if sg_entity.name == "playerNode" {
+                let player = sg_entity
+                if contact.bodyB.node?.name == "projectile" {
+                    print("player collided with throwable!")
+                    gumdropsCollected++
+                }
+            }
+            
+            
+            
         }
         
         if let sg_entity = contact.bodyB.node {
@@ -296,6 +307,14 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
                     self.addEntity(tb, toLayer: worldLayer)
                     //tb.treasureBoxHitAndSpawn(self)
                     
+                }
+            }
+            
+            if sg_entity.name == "playerNode" {
+                let player = sg_entity
+                if contact.bodyB.node?.name == "projectile" {
+                    print("player collided with throwable!")
+                    gumdropsCollected++
                 }
             }
         }

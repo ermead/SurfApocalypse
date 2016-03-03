@@ -194,6 +194,8 @@ class GameSceneLoseState: GameSceneState {
         nextScene.level = gs.levelIndex
         nextScene.win = false
         nextScene.gems = gs.gemsCollected
+        nextScene.gumdrops = gs.gumdropsCollected
+        nextScene.diamonds = gs.diamondsCollected
         nextScene.scaleMode = gs.scaleMode
         gs.view?.presentScene(nextScene)
     }

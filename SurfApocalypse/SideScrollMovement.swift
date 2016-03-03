@@ -39,7 +39,7 @@ class SideScrollComponent: GKComponent {
     var isJumping = false
     var jumpTime:CGFloat = 0.0
     var isThrowing = false
-    var secondJumpAlreadyUsed = false
+
 
     var groundY:CGFloat = 0.0
     var previousY:CGFloat = 0.0
@@ -118,7 +118,10 @@ class SideScrollComponent: GKComponent {
             
             //playerEnt.gameScene.runAction(playerEnt.gameScene.sndThrow)
             
-                if playerEnt.gameScene.projectileLayer.children.count < 4 {
+                //if playerEnt.gameScene.projectileLayer.children.count < 4 {
+                if playerEnt.gameScene.gumdropsCollected > 0 {
+                    
+                    playerEnt.gameScene.gumdropsCollected--
                     
                     isThrowing = true
                     
