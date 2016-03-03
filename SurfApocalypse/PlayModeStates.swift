@@ -158,8 +158,8 @@ class GameSceneInitialState: GameSceneState {
         gs.overlayGUI.addChild(pauseButton)
         
         let mainMenuButton = SKLabelNode(fontNamed: "MarkerFelt-Wide")
-        mainMenuButton.posByScreen(0.35, y: 0.42)
-        mainMenuButton.fontSize = 25
+        mainMenuButton.posByScreen(0.30, y: 0.42)
+        mainMenuButton.fontSize = 45
         mainMenuButton.text = gs.lt("Main")
         mainMenuButton.fontColor = SKColor.whiteColor()
         mainMenuButton.zPosition = 150

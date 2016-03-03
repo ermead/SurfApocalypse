@@ -63,7 +63,7 @@ class EnemyEntity: SGEntity {
     }
     
     override func contactWith(entity: SGEntity, scene: GamePlayMode) {
-        print("player hit enemy")
+        //print("player hit enemy")
         //self.treasureBoxHitAndSpawn(scene)
     }
     

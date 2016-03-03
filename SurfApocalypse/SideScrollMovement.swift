@@ -80,6 +80,7 @@ class SideScrollComponent: GKComponent {
             
             if let playerEnt = entity as? PlayerEntity {
                 playerEnt.gameScene.runAction(playerEnt.gameScene.sndJump)
+                playerEnt.isJumping = true
             }
             
             print("first jump")
@@ -94,6 +95,9 @@ class SideScrollComponent: GKComponent {
             spriteComponent.node.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: (seconds * 120.0)), atPoint: spriteComponent.node.position)
             if ((spriteComponent.node.position.y - groundY) > 57) || ((spriteComponent.node.position.y <= previousY) && ((spriteComponent.node.position.y - groundY) > 2)) {
                 isJumping = false
+                if let playerEnt = entity as? PlayerEntity {
+                    playerEnt.isJumping = false
+                }
               
             }
             
@@ -104,7 +108,9 @@ class SideScrollComponent: GKComponent {
                 let nodeDir = ((body.node?.position)! - spriteComponent.node.position).angle
                 if (nodeDir > -2.355 && nodeDir < -0.785) {
                     isJumping = false
-                   
+                    if let playerEnt = entity as? PlayerEntity {
+                        playerEnt.isJumping = false
+                    }
                     animationComponent.requestedAnimationState = .Run
                 }
             }

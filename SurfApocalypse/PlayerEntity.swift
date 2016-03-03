@@ -20,6 +20,7 @@ class PlayerEntity: SGEntity {
     var gameScene:GamePlayMode!
     var throwDistance: CGFloat = 200
     var isThrowing = false
+    var isJumping = false
     
     init(position: CGPoint, size: CGSize, firstFrame:SKTexture, atlas: SKTextureAtlas, scene:GamePlayMode) {
         super.init()
@@ -77,6 +78,13 @@ class PlayerEntity: SGEntity {
         
         if entity.name == "enemyEntity" {
             print("player hit enemy")
+            if isJumping {
+                if let entity = entity as? EnemyEntity {
+                    entity.spriteComponent.node.removeFromParent()
+                }
+            } else {
+                self.playerGetHitByEnemy()
+            }
         }
         
         if entity.name == "finishEntity" {
@@ -146,6 +154,10 @@ class PlayerEntity: SGEntity {
         print("player bounced!")
         self.spriteComponent.node.physicsBody?.applyImpulse(CGVectorMake(0, 10.0))
         gameScene.zoomOut(0.75, duration: 0.5, returnTo: true)
+    }
+    
+    func playerGetHitByEnemy(){
+        self.spriteComponent.node.physicsBody?.applyImpulse(CGVectorMake(-10, 10))
     }
     
     

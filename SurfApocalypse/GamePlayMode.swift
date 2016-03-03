@@ -216,6 +216,7 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
             
             if node.name == "mainMenuButton" {
                 //Transition to Main Menu
+                print("Main button pressed")
                 let nextScene = MainMenu(size: self.scene!.size)
                 nextScene.scaleMode = self.scaleMode
                 self.view?.presentScene(nextScene)
@@ -307,10 +308,11 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         if let sg_entity = contact.bodyA.node {
             
             if sg_entity.name == "enemyNode" {
-                print("something hit an enemy")
+                
                 let enemy = sg_entity
                 if contact.bodyB.node?.name == "projectile" {
                    print("enemy hit projectile")
+                    enemy.removeFromParent()
                 }
                 
                 if contact.bodyB.node?.name == "playerNode" {
@@ -353,10 +355,11 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         if let sg_entity = contact.bodyB.node {
             
             if sg_entity.name == "enemyNode" {
-                print("something hit an enemy")
+             
                 let enemy = sg_entity
                 if contact.bodyA.node?.name == "projectile" {
                     print("enemy hit projectile")
+                    enemy.removeFromParent()
                 }
                 
                 if contact.bodyB.node?.name == "playerNode" {
