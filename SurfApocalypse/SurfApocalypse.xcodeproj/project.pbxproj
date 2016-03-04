@@ -29,6 +29,9 @@
 		D735E0E91C87FEFC00B066EF /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735E0E81C87FEFC00B066EF /* EnemyEntity.swift */; };
 		D735E0EA1C87FEFC00B066EF /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735E0E81C87FEFC00B066EF /* EnemyEntity.swift */; };
 		D735E0EB1C87FEFC00B066EF /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D735E0E81C87FEFC00B066EF /* EnemyEntity.swift */; };
+		D740A6861C88F9AD0065FD7C /* EnemyMotionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740A6851C88F9AD0065FD7C /* EnemyMotionComponent.swift */; };
+		D740A6871C88F9AD0065FD7C /* EnemyMotionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740A6851C88F9AD0065FD7C /* EnemyMotionComponent.swift */; };
+		D740A6881C88F9AD0065FD7C /* EnemyMotionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D740A6851C88F9AD0065FD7C /* EnemyMotionComponent.swift */; };
 		D7CBFD7B1C8151A500800CCB /* SGEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD7A1C8151A500800CCB /* SGEntity.swift */; };
 		D7CBFD7C1C8151A500800CCB /* SGEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD7A1C8151A500800CCB /* SGEntity.swift */; };
 		D7CBFD7D1C8151A500800CCB /* SGEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFD7A1C8151A500800CCB /* SGEntity.swift */; };
@@ -212,6 +215,7 @@
 		D70C42AE1C7A6D47006E9B76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D735E0E41C87EFC600B066EF /* SpeedDashEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedDashEntity.swift; sourceTree = "<group>"; };
 		D735E0E81C87FEFC00B066EF /* EnemyEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyEntity.swift; sourceTree = "<group>"; };
+		D740A6851C88F9AD0065FD7C /* EnemyMotionComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyMotionComponent.swift; sourceTree = "<group>"; };
 		D7CBFD7A1C8151A500800CCB /* SGEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGEntity.swift; sourceTree = "<group>"; };
 		D7CBFD7E1C81529200800CCB /* GemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GemEntity.swift; sourceTree = "<group>"; };
 		D7CBFD821C8152F900800CCB /* FinishEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishEntity.swift; sourceTree = "<group>"; };
@@ -376,6 +380,7 @@
 				D7CD64581C80F0FB00E8CAF9 /* PhysicsComponent.swift */,
 				D7CD645C1C80F70B00E8CAF9 /* SideScrollMovement.swift */,
 				D7CBFD961C81622B00800CCB /* ChaseScrollMovement.swift */,
+				D740A6851C88F9AD0065FD7C /* EnemyMotionComponent.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -731,6 +736,7 @@
 				D7CBFD971C81622B00800CCB /* ChaseScrollMovement.swift in Sources */,
 				D7CD632A1C7C05B700E8CAF9 /* SG_GameSettings.swift in Sources */,
 				D7CD63871C7C200F00E8CAF9 /* SKNode+Extensions.swift in Sources */,
+				D740A6861C88F9AD0065FD7C /* EnemyMotionComponent.swift in Sources */,
 				D7CBFD831C8152F900800CCB /* FinishEntity.swift in Sources */,
 				D7CD63AC1C7CF64000E8CAF9 /* GameBuildMode.swift in Sources */,
 				D7CD63721C7C200F00E8CAF9 /* CGFloat+Extensions.swift in Sources */,
@@ -771,6 +777,7 @@
 				D7CD645A1C80F0FB00E8CAF9 /* PhysicsComponent.swift in Sources */,
 				D7CD635F1C7C12EE00E8CAF9 /* MainMenu.swift in Sources */,
 				D7CBFD8C1C815BED00800CCB /* LevelSelect.swift in Sources */,
+				D740A6871C88F9AD0065FD7C /* EnemyMotionComponent.swift in Sources */,
 				D7CD637F1C7C200F00E8CAF9 /* SKAction+Extensions.swift in Sources */,
 				D7CD63C11C7D040000E8CAF9 /* AnimationComponent.swift in Sources */,
 				D7CD63981C7CEA7F00E8CAF9 /* GamePlayMode.swift in Sources */,
@@ -823,6 +830,7 @@
 				D7CD645B1C80F0FB00E8CAF9 /* PhysicsComponent.swift in Sources */,
 				D7CD63601C7C12EE00E8CAF9 /* MainMenu.swift in Sources */,
 				D7CBFD8D1C815BED00800CCB /* LevelSelect.swift in Sources */,
+				D740A6881C88F9AD0065FD7C /* EnemyMotionComponent.swift in Sources */,
 				D7CD63801C7C200F00E8CAF9 /* SKAction+Extensions.swift in Sources */,
 				D7CD63C21C7D040000E8CAF9 /* AnimationComponent.swift in Sources */,
 				D7CD63991C7CEA7F00E8CAF9 /* GamePlayMode.swift in Sources */,

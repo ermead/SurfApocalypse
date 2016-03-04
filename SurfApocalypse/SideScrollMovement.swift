@@ -66,6 +66,8 @@ class SideScrollComponent: GKComponent {
         //Move sprite
         spriteComponent.node.position += (movementSpeed * CGFloat(seconds))
         
+        
+        //Did player fall off screen?
         if let playerEnt = entity as? PlayerEntity {
             
             if playerEnt.spriteComponent.node.position.y <= -(playerEnt.gameScene.frame.height/2) {

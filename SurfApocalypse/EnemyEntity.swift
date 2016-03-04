@@ -16,6 +16,7 @@ class EnemyEntity: SGEntity {
     var spriteComponent: SpriteComponent!
     var physicsComponent: PhysicsComponent!
     var animationComponent: AnimationComponent!
+    var enemyMotionComponent: EnemyMotionComponent!
     var item: String!
     var atlas: SKTextureAtlas = SKTextureAtlas(named: "Tiles")
     
@@ -32,6 +33,9 @@ class EnemyEntity: SGEntity {
         physicsComponent.setPhysicsCollisions(ColliderType.None.rawValue)
         physicsComponent.setPhysicsContacts(ColliderType.Player.rawValue | ColliderType.Projectile.rawValue)
         addComponent(physicsComponent)
+        
+        enemyMotionComponent = EnemyMotionComponent(entity: self)
+        addComponent(enemyMotionComponent)
         
         //Final setup of components
         spriteComponent.node.physicsBody = physicsComponent.physicsBody

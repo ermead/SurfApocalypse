@@ -67,10 +67,11 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     lazy var componentSystems: [GKComponentSystem] = {
         let parallaxSystem = GKComponentSystem(componentClass: ParallaxComponent.self)
         let animationSystem = GKComponentSystem(componentClass: AnimationComponent.self)
+        let enemyMotionSystem = GKComponentSystem(componentClass: EnemyMotionComponent.self)
        // let physicsSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
         //let scrollerSystem = GKComponentSystem(componentClass: ChaseScrollComponent.self)
         //return [parallaxSystem, animationSystem, scrollerSystem]
-        return [parallaxSystem, animationSystem]
+        return [parallaxSystem, animationSystem, enemyMotionSystem]
     }()
     
     let sideScrollSystem = SideScrollComponentSystem(componentClass: SideScrollComponent.self)

@@ -135,10 +135,7 @@ class GameSceneInitialState: GameSceneState {
             self.gs.addEntity(enemy, toLayer: self.gs.worldLayer)
             
         }
-        
-        
-        
-        
+      
         /*
         let killZone = KillZoneEntity(position: gs.worldFrame.origin, size: CGSize(width: 20.0, height: gs.worldFrame.size.height), texture: SKTexture(noiseWithSmoothness: 0.5, size: CGSize(width: 20.0, height: gs.worldFrame.size.height), grayscale: true))
         killZone.spriteComponent.node.alpha = 0.5
