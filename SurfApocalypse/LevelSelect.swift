@@ -9,6 +9,7 @@
 
 import SpriteKit
 
+
 @available(OSX 10.11, *)
 class LevelSelect: SGScene {
     
@@ -119,9 +120,11 @@ class LevelSelect: SGScene {
     }
     
     override func screenInteractionStarted(location: CGPoint) {
+    
         for node in nodesAtPoint(location) {
             if let theNode:SKNode = node,
                 let nodeName = theNode.name {
+                  
                     if nodeName == "LevelSign" {
                         if theNode.userData!["Available"] as! Bool == true {
                             self.runAction(sndButtonClick)
@@ -164,4 +167,8 @@ class LevelSelect: SGScene {
     }
     #endif
 }
+
+
+
+
 
