@@ -328,10 +328,10 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
             
             let v = CGVectorMake(pos.x - base.position.x, pos.y - base.position.y)
             let angle = atan2(v.dy, v.dx)
-            print(angle)
+            //print(angle)
             
             var deg = angle * CGFloat(180 / M_PI)
-            print(deg + 180)
+            //print(deg + 180)
             
             
             let length: CGFloat = base.frame.size.height / 2
@@ -344,13 +344,31 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
             } else {
                 ball.position = CGPointMake(base.position.x - xDist, base.position.y + yDist)
             }
-
+            
+            // setup speed
+            
+            let multiplier: CGFloat = 0.1
+            
+            control.playerSpeed = v.dx * multiplier
+            
+            //thePlayer.adjustXSpeedAndScale()
+            
+            // ends active stick check
         }
     }
     
     override func screenInteractionEnded(location: CGPoint) {
         control.jumpPressed = false
         control.throwPressed = false
+        
+        if stickActive == true {
+            //thePlayer.stopWalk()
+            control.playerSpeed = 0
+        } else if stickActive == false {
+            
+            
+        }
+        
         resetJoystick()
     }
     

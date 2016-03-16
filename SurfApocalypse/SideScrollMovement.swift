@@ -15,6 +15,7 @@ struct ControlScheme {
     //Input
     var jumpPressed:Bool = false
     var throwPressed:Bool = false
+    var playerSpeed: CGFloat = 0.0
     
 }
 
@@ -65,7 +66,15 @@ class SideScrollComponent: GKComponent {
         
         //Move sprite
         //spriteComponent.node.position += (movementSpeed * CGFloat(seconds))
+        let multiplier: CGFloat = 20
+        let movementSpeed2 = CGPoint(x: controlInput.playerSpeed, y: 0.0)
+        spriteComponent.node.position += (movementSpeed2 * multiplier * CGFloat(seconds))
         
+        if controlInput.playerSpeed < 0 {
+            spriteComponent.node.xScale = -1
+        } else {
+            spriteComponent.node.xScale = 1
+        }
         
         //Did player fall off screen?
         if let playerEnt = entity as? PlayerEntity {
@@ -150,6 +159,14 @@ class SideScrollComponent: GKComponent {
             }
             
         }
+        
+        //end throwing
+        
+        //Moving 
+        
+        print("speed is: \(controlInput.playerSpeed)")
+        
+        
         
     }
  
