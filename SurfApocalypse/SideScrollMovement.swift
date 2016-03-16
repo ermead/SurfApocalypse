@@ -70,10 +70,16 @@ class SideScrollComponent: GKComponent {
         let movementSpeed2 = CGPoint(x: controlInput.playerSpeed, y: 0.0)
         spriteComponent.node.position += (movementSpeed2 * multiplier * CGFloat(seconds))
         
-        if controlInput.playerSpeed < 0 {
-            spriteComponent.node.xScale = -1
+        if controlInput.playerSpeed == 0 && !isJumping {
+            animationComponent.requestedAnimationState = .Idle
         } else {
-            spriteComponent.node.xScale = 1
+            if controlInput.playerSpeed < 0 {
+                spriteComponent.node.xScale = -1
+                animationComponent.requestedAnimationState = .Run
+                } else {
+                spriteComponent.node.xScale = 1
+                animationComponent.requestedAnimationState = .Run
+            }
         }
         
         //Did player fall off screen?
@@ -122,7 +128,7 @@ class SideScrollComponent: GKComponent {
                     if let playerEnt = entity as? PlayerEntity {
                         playerEnt.isJumping = false
                     }
-                    animationComponent.requestedAnimationState = .Run
+                    //animationComponent.requestedAnimationState = .Run
                 }
             }
         }
@@ -164,7 +170,7 @@ class SideScrollComponent: GKComponent {
         
         //Moving 
         
-        print("speed is: \(controlInput.playerSpeed)")
+        //print("speed is: \(controlInput.playerSpeed)")
         
         
         

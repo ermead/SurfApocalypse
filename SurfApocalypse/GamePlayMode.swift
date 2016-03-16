@@ -260,11 +260,11 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
                 stickActive = true
             } else if node.name == "button1" {
                 print("button1")
-                stickActive = false
+                //stickActive = false
                 control.jumpPressed = true
             } else if node.name == "button2" {
                 print("button2")
-                stickActive = false
+                //stickActive = false
                 if canThrow {
                     control.throwPressed = true
                 }
@@ -364,6 +364,7 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         if stickActive == true {
             //thePlayer.stopWalk()
             control.playerSpeed = 0
+            
         } else if stickActive == false {
             
             
