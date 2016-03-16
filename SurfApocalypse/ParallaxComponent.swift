@@ -10,6 +10,9 @@ import SpriteKit
 import GameplayKit
 
 @available(OSX 10.11, *)
+
+
+
 class ParallaxComponent: GKComponent {
     
     var movementFactor = CGPointZero
@@ -34,7 +37,10 @@ class ParallaxComponent: GKComponent {
         super.updateWithDeltaTime(seconds)
         
         //Move Sprite
-        spriteComponent.node.position += CGPoint(x: movementFactor.x, y: movementFactor.y)
+        
+        let multiplier: CGFloat = ParallaxSpeed
+        
+        spriteComponent.node.position += CGPoint(x: movementFactor.x * multiplier, y: movementFactor.y)
         
         //Check location
         if (spriteComponent.node.position.x <= (spriteComponent.node.size.width * -1)) && resetLocation == true {

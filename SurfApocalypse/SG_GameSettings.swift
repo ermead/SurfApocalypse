@@ -11,6 +11,7 @@ import CoreGraphics
 import SpriteKit
 
 enum AnimationState: String {
+    case Walk = "Walk_"
     case Idle = "Idle_"
     case Dead = "Dead_"
     case Jump = "Jump__"

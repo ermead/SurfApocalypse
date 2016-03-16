@@ -134,6 +134,7 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         if joystickControl == true {
         addJoystickControls()
         }
+        
     }
     
     //MARK: Functions

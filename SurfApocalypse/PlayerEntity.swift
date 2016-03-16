@@ -21,6 +21,10 @@ class PlayerEntity: SGEntity {
     var throwDistance: CGFloat = 200
     var isThrowing = false
     var isJumping = false
+    var touchingBox = false
+    
+    var timing = NSTimeInterval(1.0 / 20.0)
+    let slowTiming = NSTimeInterval(1.0 / 10.0)
     
     init(position: CGPoint, size: CGSize, firstFrame:SKTexture, atlas: SKTextureAtlas, scene:GamePlayMode) {
         super.init()
@@ -30,7 +34,7 @@ class PlayerEntity: SGEntity {
         //Initialize components
         spriteComponent = SpriteComponent(entity: self, texture: SKTexture(), size: size, position:position)
         addComponent(spriteComponent)
-        animationComponent = AnimationComponent(node: spriteComponent.node, animations: loadAnimations(atlas))
+        animationComponent = AnimationComponent(node: spriteComponent.node, animations: loadAnimations(atlas), timing: timing)
         addComponent(animationComponent)
         physicsComponent = PhysicsComponent(entity: self, bodySize: CGSize(width: spriteComponent.node.size.width * 0.8, height: spriteComponent.node.size.height * 0.8), bodyShape: .squareOffset, rotation: false)
         physicsComponent.setCategoryBitmask(ColliderType.Player.rawValue, dynamic: true)
@@ -60,19 +64,23 @@ class PlayerEntity: SGEntity {
     func loadAnimations(textureAtlas:SKTextureAtlas) -> [AnimationState: Animation] {
         var animations = [AnimationState: Animation]()
         
+        animations[.Walk] = AnimationComponent.animationFromAtlas(textureAtlas,
+            withImageIdentifier: AnimationState.Run.rawValue,
+            forAnimationState: .Walk, repeatTexturesForever: true, textureSize: CGSize(width: 40.1, height: 48.0), timing: slowTiming)
+        
         animations[.Jump] = AnimationComponent.animationFromAtlas(textureAtlas,
             withImageIdentifier: AnimationState.Jump.rawValue,
-            forAnimationState: .Jump, repeatTexturesForever: false, textureSize: CGSize(width: 40.1, height: 48.0))
+            forAnimationState: .Jump, repeatTexturesForever: false, textureSize: CGSize(width: 40.1, height: 48.0), timing: timing)
         animations[.Run] = AnimationComponent.animationFromAtlas(textureAtlas,
             withImageIdentifier: AnimationState.Run.rawValue,
-            forAnimationState: .Run, repeatTexturesForever: true, textureSize: CGSize(width: 37.93, height: 48.0))
+            forAnimationState: .Run, repeatTexturesForever: true, textureSize: CGSize(width: 37.93, height: 48.0), timing: timing)
         animations[.IdleThrow] = AnimationComponent.animationFromAtlas(textureAtlas,
             withImageIdentifier: AnimationState.IdleThrow.rawValue,
-            forAnimationState: .IdleThrow, repeatTexturesForever: false, textureSize: CGSize(width: 40.1, height: 48.0))
+            forAnimationState: .IdleThrow, repeatTexturesForever: false, textureSize: CGSize(width: 40.1, height: 48.0), timing: timing)
         
         animations[.Idle] = AnimationComponent.animationFromAtlas(textureAtlas,
             withImageIdentifier: AnimationState.Idle.rawValue,
-            forAnimationState: .Idle, repeatTexturesForever: true, textureSize: CGSize(width: 40.1, height: 48.0))
+            forAnimationState: .Idle, repeatTexturesForever: true, textureSize: CGSize(width: 40.1, height: 48.0), timing: timing)
         
         return animations
     }
@@ -119,6 +127,9 @@ class PlayerEntity: SGEntity {
         if entity.name == "treasureBoxEntity" {
             
             if let box = entity as? TreasureBoxEntity {
+                
+                touchingBox = true
+            
                 if box.item == "opened box" {
                     return
                 } else {
@@ -126,7 +137,9 @@ class PlayerEntity: SGEntity {
                 }
             }
             
-       }
+        } else {
+            touchingBox = false
+        }
         
         if entity.name == "killZoneEntity" {
             playerDied()
@@ -184,6 +197,11 @@ class PlayerEntity: SGEntity {
     
     func throwObject(){
         if let spriteComponent = self.spriteComponent {
+            
+            if self.spriteComponent.node.xScale == -1 {
+                throwDistance = -throwDistance
+            } 
+            
         let object = SKSpriteNode()
         var physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 32, height: 32))
         physicsBody.dynamic = true
