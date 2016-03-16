@@ -20,7 +20,8 @@ class GameScene: SGScene {
         SKTAudio.sharedInstance().backgroundMusicPlayer?.volume = 0.4
         
         //Transition to Main Menu
-        let nextScene = MainMenu(size: self.scene!.size)
+        //let nextScene = MainMenu(size: self.scene!.size)
+        let nextScene = GamePlayMode(size: self.scene!.size)
         nextScene.scaleMode = self.scaleMode
         self.view?.presentScene(nextScene)
     }

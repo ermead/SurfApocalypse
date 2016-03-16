@@ -142,6 +142,9 @@ class PlayerEntity: SGEntity {
         
     }
     
+    //////////
+    
+    
     func playerSpeedDash() {
         print("player speed dashing!")
         self.spriteComponent.node.physicsBody?.applyImpulse(CGVectorMake(10.0, 0))

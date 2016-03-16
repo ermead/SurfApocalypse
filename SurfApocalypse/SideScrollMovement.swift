@@ -64,7 +64,7 @@ class SideScrollComponent: GKComponent {
         super.updateWithDeltaTime(seconds)
         
         //Move sprite
-        spriteComponent.node.position += (movementSpeed * CGFloat(seconds))
+        //spriteComponent.node.position += (movementSpeed * CGFloat(seconds))
         
         
         //Did player fall off screen?
