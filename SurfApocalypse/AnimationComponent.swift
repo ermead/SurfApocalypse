@@ -15,22 +15,24 @@ struct Animation {
     let textures: [SKTexture]
     let repeatTexturesForever: Bool
     let textureSize: CGSize
+    let timing: NSTimeInterval
 }
 
 @available(OSX 10.11, *)
 class AnimationComponent: GKComponent {
     
     static let actionKey = "Action"
-    static let timePerFrame = NSTimeInterval(1.0 / 20.0)
     
+    var timing: NSTimeInterval
     let node: SKSpriteNode
     var animations: [AnimationState: Animation]
     private(set) var currentAnimation: Animation?
     var requestedAnimationState: AnimationState?
     
-    init(node: SKSpriteNode, animations: [AnimationState: Animation]) {
+    init(node: SKSpriteNode, animations: [AnimationState: Animation], timing: NSTimeInterval) {
         self.node = node
         self.animations = animations
+        self.timing = timing
     }
     
     private func runAnimationForAnimationState(animationState:
@@ -50,10 +52,10 @@ class AnimationComponent: GKComponent {
             if animation.repeatTexturesForever {
                 texturesAction = SKAction.repeatActionForever(
                     SKAction.animateWithTextures(animation.textures,
-                        timePerFrame: AnimationComponent.timePerFrame))
+                        timePerFrame: self.timing))
             } else {
                 texturesAction = SKAction.animateWithTextures(animation.textures,
-                    timePerFrame: AnimationComponent.timePerFrame)
+                    timePerFrame: self.timing)
             }
             
             node.runAction(texturesAction, withKey: AnimationComponent.actionKey)
@@ -72,18 +74,19 @@ class AnimationComponent: GKComponent {
     
     class func animationFromAtlas(atlas: SKTextureAtlas, withImageIdentifier
         identifier: String, forAnimationState animationState: AnimationState,
-        repeatTexturesForever: Bool = true, textureSize:CGSize) -> Animation {
+        repeatTexturesForever: Bool = true, textureSize:CGSize, timing: NSTimeInterval) -> Animation {
             let textures = atlas.textureNames.filter {
                 $0.containsString("\(identifier)")
                 }.sort {
                     $0 < $1 }.map {
                         atlas.textureNamed($0)
             }
-            return Animation(
+            return Animation (
                 animationState: animationState,
                 textures: textures,
                 repeatTexturesForever: repeatTexturesForever,
-                textureSize: textureSize
+                textureSize: textureSize,
+                timing: timing
             )
     }
 }

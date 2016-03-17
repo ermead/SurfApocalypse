@@ -19,6 +19,7 @@ class EnemyEntity: SGEntity {
     var enemyMotionComponent: EnemyMotionComponent!
     var item: String!
     var atlas: SKTextureAtlas = SKTextureAtlas(named: "Tiles")
+    var timing: NSTimeInterval = NSTimeInterval(1.0/20.0)
     
     init(position: CGPoint, size: CGSize, texture:SKTexture, item: String) {
         super.init()
@@ -26,7 +27,7 @@ class EnemyEntity: SGEntity {
         //Initialize components
         spriteComponent = SpriteComponent(entity: self, texture: texture, size: size, position:position)
         addComponent(spriteComponent)
-        animationComponent = AnimationComponent(node: spriteComponent.node, animations: loadAnimations(atlas))
+        animationComponent = AnimationComponent(node: spriteComponent.node, animations: loadAnimations(atlas), timing: timing)
         addComponent(animationComponent)
         physicsComponent = PhysicsComponent(entity: self, bodySize: CGSize(width: spriteComponent.node.size.width * 0.8, height: spriteComponent.node.size.height * 0.8), bodyShape: .square, rotation: false)
         physicsComponent.setCategoryBitmask(ColliderType.Destroyable.rawValue, dynamic: false)
@@ -73,10 +74,11 @@ class EnemyEntity: SGEntity {
     
     func loadAnimations(textureAtlas:SKTextureAtlas) -> [AnimationState: Animation] {
         var animations = [AnimationState: Animation]()
+        let timing = NSTimeInterval(1.0 / 20.0)
         
         animations[AnimationState.EnemyWalk] = AnimationComponent.animationFromAtlas(textureAtlas,
             withImageIdentifier: AnimationState.EnemyWalk.rawValue,
-            forAnimationState: .EnemyWalk, repeatTexturesForever: true, textureSize: CGSize(width: 40.1, height: 48.0))
+            forAnimationState: .EnemyWalk, repeatTexturesForever: true, textureSize: CGSize(width: 40.1, height: 48.0), timing: timing)
         
         return animations
     }

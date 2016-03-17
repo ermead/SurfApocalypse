@@ -10,11 +10,21 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+
+
 var randomTreasures = ["diamond", "gumdrop", "gem"]
 
 @available(OSX 10.11, *)
 class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     
+    //JoyStick and Buttons
+    var joystickControl: Bool = true
+    let button1 = SKSpriteNode(imageNamed: "Button")
+    let button2 = SKSpriteNode(imageNamed: "Button")
+    let base = SKSpriteNode(imageNamed: "Base")
+    let ball = SKSpriteNode(imageNamed: "Ball")
+    
+    var stickActive: Bool = false
     
     //random treasures:
     let randomTreasure = GKRandomDistribution(forDieWithSideCount: randomTreasures.count)
@@ -74,7 +84,8 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         return [parallaxSystem, animationSystem, enemyMotionSystem]
     }()
     
-    let sideScrollSystem = SideScrollComponentSystem(componentClass: SideScrollComponent.self)
+        let sideScrollSystem = SideScrollComponentSystem(componentClass: SideScrollComponent.self)
+    
     
     //Timers
     
@@ -96,6 +107,7 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     //MARK: Initializer
     
     override func didMoveToView(view: SKView) {
+      
         stateMachine.enterState(GameSceneInitialState.self)
         
         gemsLabel.posByScreen(0.35, y: 0.35)
@@ -118,9 +130,44 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         diamondsLabel.fontColor = SKColor.whiteColor()
         diamondsLabel.zPosition = 150
         overlayGUI.addChild(diamondsLabel)
+        
+        if joystickControl == true {
+        addJoystickControls()
+        }
+        
     }
     
     //MARK: Functions
+    
+    func addJoystickControls(){
+        
+        overlayGUI.addChild(ball)
+        overlayGUI.addChild(base)
+        base.posByScreen(-0.35, y: -0.35)
+        ball.position = base.position
+        ball.zPosition = 152
+        base.zPosition = 151
+        base.alpha = 0.4
+        ball.alpha = 0.4
+        ball.name = "joystick"
+        
+        overlayGUI.addChild(button1)
+        button1.posByScreen(0.25, y: -0.35)
+        button1.zPosition = 151
+        button1.alpha = 0.2
+        button1.xScale = 0.75
+        button1.yScale = button1.xScale
+        button1.name = "button1"
+        
+        overlayGUI.addChild(button2)
+        button2.posByScreen(0.40, y: -0.35)
+        button2.zPosition = 151
+        button2.alpha = 0.2
+        button2.xScale = button1.xScale
+        button2.yScale = button1.xScale
+        button2.name = "button2"
+        
+    }
     
     func addEntity(entity: GKEntity,toLayer layer:SKNode) {
         //Add Entity to set
@@ -137,6 +184,7 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         }
         
         sideScrollSystem.addComponentWithEntity(entity)
+        
         
     }
     
@@ -177,7 +225,6 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         
         if !pauseLoop {
         
-    
         var deltaTime = currentTime - lastUpdateTimeInterval
         deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
         lastUpdateTimeInterval = currentTime
@@ -189,7 +236,7 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
         }
             
         sideScrollSystem.updateWithDeltaTime(deltaTime, controlInput: control)
-       
+                
          //Update Game
             
          gemsLabel.text = lt("gems: \(gemsCollected)")
@@ -203,6 +250,28 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
     //MARK: Responders:
     
     override func screenInteractionStarted(location: CGPoint) {
+        
+        print("loctaion of touch is: \(location)")
+        
+        
+        if let node = nodeAtPoint(location) as? SKNode {
+            
+            if node.name == "joystick" {
+                print("joystick")
+                stickActive = true
+            } else if node.name == "button1" {
+                print("button1")
+                //stickActive = false
+                control.jumpPressed = true
+            } else if node.name == "button2" {
+                print("button2")
+                //stickActive = false
+                if canThrow {
+                    control.throwPressed = true
+                }
+            }
+        }
+        
         
         if let node = nodeAtPoint(location) as? SKLabelNode {
             
@@ -222,43 +291,94 @@ class GamePlayMode: SGScene, SKPhysicsContactDelegate {
                 nextScene.scaleMode = self.scaleMode
                 self.view?.presentScene(nextScene)
             }
-            
+           
         }
         
-        
-        
-        if canThrow == true {
-        ///THROW & JUMP:
-        if let player = worldLayer.childNodeWithName("playerNode") as? EntityNode {
-        if (location.x > player.position.x){
-            // on right side
-            control.jumpPressed = true
-            print("jump")
-        } else {
-            // on left side
-            control.throwPressed = true
-            print("throw")
-            }
-        }
-        ///
-        } else {
-            //Only Jump
-          control.jumpPressed = true
-        }
+//        if canThrow == true {
+//        ///THROW & JUMP:
+//        if let player = worldLayer.childNodeWithName("playerNode") as? EntityNode {
+//        if (location.x > player.position.x){
+//            // on right side
+//            control.jumpPressed = true
+//            print("jump")
+//        } else {
+//            // on left side
+//            control.throwPressed = true
+//            print("throw")
+//            }
+//        }
+//        ///
+//        } else {
+//            //Only Jump
+//          control.jumpPressed = true
+//        }
         
         
     }
     
     override func screenInteractionMoved(location: CGPoint) {
         
-        control.jumpPressed = false
-        control.throwPressed = false
-
+//        control.jumpPressed = false
+//        control.throwPressed = false
+        
+        
+        
+        if stickActive == true {
+            
+            let pos = overlayGUI.convertPoint(location, fromNode: self)
+            
+            let v = CGVectorMake(pos.x - base.position.x, pos.y - base.position.y)
+            let angle = atan2(v.dy, v.dx)
+            //print(angle)
+            
+            var deg = angle * CGFloat(180 / M_PI)
+            //print(deg + 180)
+            
+            
+            let length: CGFloat = base.frame.size.height / 2
+            
+            let xDist: CGFloat = sin(angle - 1.57079633) * length
+            let yDist: CGFloat = cos(angle - 1.57079633) * length
+            
+            if (CGRectContainsPoint(base.frame, pos)){
+                ball.position = pos
+            } else {
+                ball.position = CGPointMake(base.position.x - xDist, base.position.y + yDist)
+            }
+            
+            // setup speed
+            
+            let multiplier: CGFloat = 0.1
+            
+            control.playerSpeed = v.dx * multiplier
+            
+            //thePlayer.adjustXSpeedAndScale()
+            
+            // ends active stick check
+        }
     }
     
     override func screenInteractionEnded(location: CGPoint) {
         control.jumpPressed = false
         control.throwPressed = false
+        
+        if stickActive == true {
+            //thePlayer.stopWalk()
+            control.playerSpeed = 0
+            
+        } else if stickActive == false {
+            
+            
+        }
+        
+        resetJoystick()
+    }
+    
+    func resetJoystick(){
+        let move: SKAction = SKAction.moveTo(base.position, duration: 0.2)
+        move.timingMode = .EaseOut
+        ball.runAction(move)
+    
     }
     
     override func buttonEvent(event: String, velocity: Float, pushedOn: Bool) {
