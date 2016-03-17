@@ -80,7 +80,7 @@ class PlayerEntity: SGEntity {
         
         animations[.Idle] = AnimationComponent.animationFromAtlas(textureAtlas,
             withImageIdentifier: AnimationState.Idle.rawValue,
-            forAnimationState: .Idle, repeatTexturesForever: true, textureSize: CGSize(width: 40.1, height: 48.0), timing: timing)
+            forAnimationState: .Idle, repeatTexturesForever: true, textureSize: CGSize(width: 31.0, height: 48.0), timing: timing)
         
         return animations
     }

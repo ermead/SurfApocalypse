@@ -84,7 +84,7 @@ class SideScrollComponent: GKComponent {
             ParallaxSpeed = 0
             
         } else if controlInput.playerSpeed != 0 && !isJumping {
-            print(controlInput.playerSpeed)
+            //print(controlInput.playerSpeed)
             if abs(controlInput.playerSpeed) > 5 {
                 //running
                 animationComponent.requestedAnimationState = .Run
